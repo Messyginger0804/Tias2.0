@@ -1,15 +1,39 @@
 'use client'
 import InputComponent from "@/components/FormElements/Input"
 import Select from "@/components/FormElements/Select"
-import { registrationFormControls } from "@/utils"
+import { registerNewUser } from "@/services/register"
+import { isFormValid, registrationFormControls } from "@/utils"
+import { useState } from "react"
 
 const isRegistered = false
 // const isRegistered = true
 
+const initialFormData = {
+    name: '',
+    email: '',
+    password: '',
+    role: 'customer'
+}
+
 export default function Register() {
+
+    const [formData, setFormData] = useState(initialFormData)
+
+
+
+    // console.log(formData)
+
+    // console.log(isFormValid())
+
+    const handleRegister = async () => {
+        const data = await registerNewUser(formData);
+
+        console.log(data)
+    }
+
     return (
 
-        <div className='bg-white relative text-black text-center mt-20'>
+        <div className="bg-white relative text-gray-900">
             <div className="flex flex-col items-center justify-between py-0 px-10 mt-8 mr-auto xl:px-5 lg:flex-row">
                 <div className="flex flex-col justify-center items-center w-full pr-10 pl-10 lg:flex-row">
                     <div className="w-full mt-10 mx-0 mb-0 relative max-w-2xl lg:mt-0 lg:w-5/12">
@@ -34,16 +58,33 @@ export default function Register() {
                                                         type={controlItem.type}
                                                         placeholder={controlItem.placeholder}
                                                         label={controlItem.label}
-                                                    // value={formData[controlItem.id]}
+                                                        onChange={(event) => {
+                                                            setFormData({
+                                                                ...formData,
+                                                                [controlItem.id]: event.target.value,
+                                                            });
+                                                        }}
+                                                        value={formData[controlItem.id]}
                                                     />
                                                     :
                                                     controlItem.componentType === 'select' ?
                                                         <Select
-                                                            key={controlItem.id}
+                                                            options={controlItem.options}
+                                                            label={controlItem.label}
+                                                            onChange={(event) => {
+                                                                setFormData({
+                                                                    ...formData,
+                                                                    [controlItem.id]: event.target.value,
+                                                                });
+                                                            }}
+                                                            value={formData[controlItem.id]}
                                                         />
                                                         : null
                                             )}
-                                        <button className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide">
+                                        <button className="disabled:opacity-60 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide"
+                                            disabled={!isFormValid()}
+                                            onClick={handleRegister}
+                                        >
                                             Register
                                         </button>
                                     </div>

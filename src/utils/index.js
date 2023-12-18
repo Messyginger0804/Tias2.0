@@ -243,3 +243,13 @@ export const addNewAddressFormControls = [
         componentType: "input",
     },
 ];
+
+
+
+// ***************************FUNCTIONS************************
+
+export const isFormValid = (formData) => {
+    return formData && formData.name && formData.name.trim() !== ''
+        && formData && formData.email && formData.email.trim() !== ''
+        && formData && formData.password && formData.password.trim() !== '' ? true : false;
+}

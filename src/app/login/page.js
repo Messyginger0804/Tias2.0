@@ -12,7 +12,7 @@ export default function Login() {
     const router = useRouter();
     return (
 
-        <div className='bg-white relative text-black text-center mt-20'>
+        <div className="bg-white relative text-gray-900">
             <div className="flex flex-col items-center justify-between py-0 px-10 mt-8 mr-auto xl:px-5 lg:flex-row">
                 <div className="flex flex-col justify-center items-center w-full pr-10 pl-10 lg:flex-row">
                     <div className="w-full mt-10 mx-0 mb-0 relative max-w-2xl lg:mt-0 lg:w-5/12">
@@ -31,7 +31,13 @@ export default function Login() {
                                                 type={controlItem.type}
                                                 placeholder={controlItem.placeholder}
                                                 label={controlItem.label}
-                                            // value={formData[controlItem.id]}
+                                                onChange={(event) => {
+                                                    setFormData({
+                                                        ...formData,
+                                                        [controlItem.id]: event.target.value,
+                                                    });
+                                                }}
+                                                value={formData[controlItem.id]}
                                             />
 
                                             : null
