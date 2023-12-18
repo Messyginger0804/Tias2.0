@@ -7,10 +7,10 @@ import CommonModal from "../CommonModal";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 
-const isAdmin = true;
-// const isAdmin = false;
-// const isCustomer = true;
-const isCustomer = false;
+// const isAdmin = true;
+const isAdmin = false;
+const isCustomer = true;
+// const isCustomer = false;
 
 const user = {
     role: 'admin',
@@ -27,8 +27,10 @@ function NavItems({ isModalView = false, isAdmin, router }) {
                 }`}
             id="nav-items"
         >
+            {console.log(styles.button)}
+
             <ul
-                className={`flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white ${isModalView ? "border-none" : "border border-gray-100"
+                className={`flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white ${isModalView ? "border-none" : "border border-gray-100"
                     }`}
             >
                 {isAdmin
@@ -73,19 +75,20 @@ function Navbar() {
                         !isAdmin && isCustomer ?
                             (
                                 <Fragment>
-                                    <button className={styles.button}>Account</button>
-                                    <button className={styles.button}>Cart</button>
+                                    <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Account</button>
+                                    {/* <button className={styles.button}>Account</button> */}
+                                    <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Cart</button>
                                 </Fragment>
                             ) : null
                     }
 
                     {
                         user?.role === 'admin' ?
-                            isAdmin ? <button className={styles.button}>Customer View</button> : <button className={styles.button}>Admin View</button>
+                            isAdmin ? <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Customer View</button> : <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Admin View</button>
                             : null
                     }
                     {
-                        user ? <button className={styles.button}>Logout</button> : <button className={styles.button}>Login</button>
+                        user ? <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Logout</button> : <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Login</button>
                     }
                     <button
                         data-collapse-toggle="navbar-sticky"
