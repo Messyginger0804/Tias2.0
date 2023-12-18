@@ -8,7 +8,8 @@ export default function InputComponent({
 
     return (
         <div className="relative">
-            <p className="pt-0 p-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600">{label}</p>
+            <p className="pt-0 p-2 pb-0 pl-2 absolute -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 bg-white">
+                {label}</p>
             <input
                 placeholder={placeholder}
                 type={type || 'text'}

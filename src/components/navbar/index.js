@@ -1,7 +1,7 @@
 'use client'
 
 import { GlobalContext } from "@/context";
-import { adminNavOptions, navOptions, styles } from "@/utils";
+import { adminNavOptions, navOptions } from "@/utils";
 import { Fragment, useContext } from "react";
 import CommonModal from "../CommonModal";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -27,7 +27,6 @@ function NavItems({ isModalView = false, isAdmin, router }) {
                 }`}
             id="nav-items"
         >
-            {console.log(styles.button)}
 
             <ul
                 className={`flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-white ${isModalView ? "border-none" : "border border-gray-100"
@@ -75,20 +74,20 @@ function Navbar() {
                         !isAdmin && isCustomer ?
                             (
                                 <Fragment>
-                                    <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Account</button>
-                                    {/* <button className={styles.button}>Account</button> */}
-                                    <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Cart</button>
+                                    {/* <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Account</button> */}
+                                    <button className='btn1'>Account</button>
+                                    <button className=" btn1">Cart</button>
                                 </Fragment>
                             ) : null
                     }
 
                     {
                         user?.role === 'admin' ?
-                            isAdmin ? <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Customer View</button> : <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Admin View</button>
+                            isAdmin ? <button className="btn1">Customer View</button> : <button className="btn1">Admin View</button>
                             : null
                     }
                     {
-                        user ? <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Logout</button> : <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Login</button>
+                        user ? <button className="btn1">Logout</button> : <button className="btn1">Login</button>
                     }
                     <button
                         data-collapse-toggle="navbar-sticky"
