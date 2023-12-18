@@ -13,7 +13,7 @@ export default function Select({ label, value, onChange, options = [] }) {
                     options && options.length ?
                         options.map(
                             optionItem =>
-                                <option id={optionItem.id} value={optionItem.id} key={optionItem.id}>{optionItem.label}</option>)
+                                <option key={option.id} id={optionItem.id} value={optionItem.id} key={optionItem.id}>{optionItem.label}</option>)
                         : <option id="" value={''}>Select</option>
                 }
 
