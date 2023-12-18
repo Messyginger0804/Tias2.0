@@ -248,8 +248,8 @@ export const addNewAddressFormControls = [
 
 // ***************************FUNCTIONS************************
 
-export const isFormValid = (formData) => {
-    return formData && formData.name && formData.name.trim() !== ''
-        && formData && formData.email && formData.email.trim() !== ''
-        && formData && formData.password && formData.password.trim() !== '' ? true : false;
-}
+// export const isFormValid = (formData) => {
+//     return formData && formData.name && formData.name.trim() !== ''
+//         && formData && formData.email && formData.email.trim() !== ''
+//         && formData && formData.password && formData.password.trim() !== '' ? true : false;
+// }

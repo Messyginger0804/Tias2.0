@@ -23,7 +23,19 @@ export default function Register() {
 
     // console.log(formData)
 
-    // console.log(isFormValid())
+    const isFormValid = () => {
+        return formData &&
+            formData.name &&
+            formData.name.trim() !== "" &&
+            formData.email &&
+            formData.email.trim() !== "" &&
+            formData.password &&
+            formData.password.trim() !== ""
+            ? true
+            : false;
+    }
+
+    console.log(isFormValid())
 
     const handleRegister = async () => {
         const data = await registerNewUser(formData);
@@ -81,7 +93,7 @@ export default function Register() {
                                                         />
                                                         : null
                                             )}
-                                        <button className="disabled:opacity-60 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide"
+                                        <button className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide"
                                             disabled={!isFormValid()}
                                             onClick={handleRegister}
                                         >

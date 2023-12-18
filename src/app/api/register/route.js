@@ -1,4 +1,6 @@
-import connectToDB from "@/database";
+// 'use client'
+
+import connectToDB from "@/mongodb";
 import User from "@/models/user";
 import { hash } from "bcryptjs";
 import Joi from "joi";
