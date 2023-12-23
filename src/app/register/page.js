@@ -93,7 +93,8 @@ export default function Register() {
                                                         />
                                                         : null
                                             )}
-                                        <button className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide"
+                                        <button
+                                            className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide"
                                             disabled={!isFormValid()}
                                             onClick={handleRegister}
                                         >
