@@ -1,10 +1,10 @@
 'use client'
 
 import InputComponent from "@/components/FormElements/Input"
-import Select from "@/components/FormElements/Select"
+import { login } from "@/services/login"
 import { loginFormControls } from "@/utils"
 import { useRouter } from "next/navigation"
-import Register from "../register/page"
+import { useState } from "react"
 
 const intiialFormData = {
     email: '',
@@ -16,6 +16,15 @@ export default function Login() {
     const [formData, setFormData] = useState(intiialFormData)
 
     const router = useRouter();
+
+    console.log(formData)
+
+    const handleLogin = async () => {
+
+        const data = await login(formData);
+        console.log('hey aidyn its working ------->>', data);
+
+    }
 
     return (
 
@@ -49,7 +58,8 @@ export default function Login() {
 
                                             : null
                                     )}
-                                <button className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide">
+                                <button onClick={handleLogin}
+                                    className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide">
                                     Login
                                 </button>
                                 <div className="flex flex-col gap-2">
