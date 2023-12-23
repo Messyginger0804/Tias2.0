@@ -6,10 +6,17 @@ import { loginFormControls } from "@/utils"
 import { useRouter } from "next/navigation"
 import Register from "../register/page"
 
+const intiialFormData = {
+    email: '',
+    password: '',
+
+}
 
 export default function Login() {
+    const [formData, setFormData] = useState(intiialFormData)
 
     const router = useRouter();
+
     return (
 
         <div className="bg-white relative text-gray-900">
