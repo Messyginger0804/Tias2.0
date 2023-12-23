@@ -2,6 +2,8 @@
 
 
 export const login = async (formData) => {
+
+    // just  copy over from register just alittle different
     try {
         const response = await fetch("/api/login", {
             method: "POST",
@@ -9,9 +11,11 @@ export const login = async (formData) => {
                 "content-type": "application/json",
             },
             body: JSON.stringify(formData),
-        });
 
-        console.log(response)
+        });
+        console.log(formData)
+
+        console.log(respformData)
 
         const data = await response.json();
 
