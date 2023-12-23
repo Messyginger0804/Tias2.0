@@ -6,7 +6,7 @@ import { login } from "@/services/login"
 import { loginFormControls } from "@/utils"
 import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 const intiialFormData = {
     email: '',
@@ -52,6 +52,14 @@ export default function Login() {
             ? true
             : false;
     }
+
+    console.log('the isAuthUser------>', isAuthUser, 'the user-------->', user)
+
+    useEffect(() => {
+        if (isAuthUser) {
+            router.push('/')
+        }
+    }, [isAuthUser])
 
     return (
 
