@@ -8,7 +8,7 @@ export const GlobalContext = createContext(null);
 export default function GlobalState({ children }) {
     const [showNavModal, setShowNavModal] = useState(false);
     const [isAuthUser, setIsAuthUser] = useState(false);
-    const [user, setUser] = useState(false);
+    const [user, setUser] = useState(null);
 
     return (
         <GlobalContext.Provider value={{
