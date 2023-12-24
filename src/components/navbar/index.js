@@ -7,10 +7,10 @@ import CommonModal from "../CommonModal";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 
-// const isAdmin = true;
-const isAdmin = false;
-const isCustomer = true;
-// const isCustomer = false;
+const isAdmin = true;
+// const isAdmin = false;
+// const isCustomer = true;
+const isCustomer = false;
 
 const user = {
     role: 'admin',
@@ -18,8 +18,8 @@ const user = {
 
 function NavItems({ isModalView = false, isAdmin, router }) {
 
-
-
+    const { showNavModal, setShowNavModal } = useContext(GlobalContext)
+    const { user, isAuthUser } = useContext(GlobalContext)
 
     return (
         <div
