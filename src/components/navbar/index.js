@@ -5,16 +5,18 @@ import { adminNavOptions, navOptions } from "@/utils";
 import { Fragment, useContext } from "react";
 import CommonModal from "../CommonModal";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 
 const isAdmin = true;
 // const isAdmin = false;
-// const isCustomer = true;
-const isCustomer = false;
+// const isAuthuser = true;
+// const isAuthUser = false;
 
-const user = {
-    role: 'admin',
-}
+// const user = {
+//     role: 'admin',
+// }
 
 function NavItems({ isModalView = false, isAdmin, router }) {
 
@@ -57,7 +59,28 @@ function NavItems({ isModalView = false, isAdmin, router }) {
 }
 
 function Navbar() {
-    const { showNavModal, setShowNavModal } = useContext(GlobalContext)
+    const { showNavModal, setShowNavModal } = useContext(GlobalContext);
+    const router = useRouter()
+    const {
+        user,
+        isAuthUser,
+        setIsAuthUser,
+        setUser,
+        currentUpdatedProduct,
+        setCurrentUpdatedProduct,
+        showCartModal,
+        setShowCartModal
+    } = useContext(GlobalContext);
+
+    console.log(user, isAuthUser, 'navabar------');
+
+    const handleLogOut = () => {
+        setIsAuthUser(false);
+        setUser(null);
+        Cookies.remove('token');
+        localStorage.clear()
+        router.push('/')
+    }
 
 
     return <>
@@ -71,7 +94,7 @@ function Navbar() {
                 <div className="flex md:order-2 gap-2">
 
                     {
-                        !isAdmin && isCustomer ?
+                        !isAdmin && isAuthUser ?
                             (
                                 <Fragment>
                                     {/* <button className=" mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white rounded">Account</button> */}
@@ -87,7 +110,11 @@ function Navbar() {
                             : null
                     }
                     {
-                        user ? <button className="btn1">Logout</button> : <button className="btn1">Login</button>
+                        user ? <button className="btn1"
+                            onClick={handleLogOut}
+                        >Logout</button> : <button className="btn1"
+                        //  onClick={router.push('/login')}
+                        >Login</button>
                     }
                     <button
                         data-collapse-toggle="navbar-sticky"
