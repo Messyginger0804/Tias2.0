@@ -4,7 +4,7 @@
 
 const AdminAllProducts = () => {
     return (
-        <div>AdminAllProducts</div>
+        <div>Admin  -- AllProducts</div>
     )
 }
 
