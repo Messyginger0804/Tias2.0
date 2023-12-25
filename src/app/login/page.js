@@ -1,46 +1,58 @@
 'use client'
 
 import InputComponent from "@/components/FormElements/Input"
+import Loader from "@/components/loader"
+import Notification from "@/components/notification"
 import { GlobalContext } from "@/context"
 import { login } from "@/services/login"
 import { loginFormControls } from "@/utils"
 import Cookies from "js-cookie"
 import { useRouter } from "next/navigation"
 import { useContext, useEffect, useState } from "react"
+import { toast } from "react-toastify"
 
-const intiialFormData = {
+const initialFormData = {
     email: '',
     password: '',
 
 }
 
 export default function Login() {
-    const [formData, setFormData] = useState(intiialFormData)
+    const [formData, setFormData] = useState(initialFormData)
     const {
+        componentLoader, setComponentLoader,
         isAuthUser, setIsAuthUser,
         user, setUser,
     } = useContext(GlobalContext)
 
     const router = useRouter();
 
-    console.log(formData)
+    // console.log(formData)
 
     const handleLogin = async () => {
+        setComponentLoader({ loading: true, id: '' });
         const data = await login(formData);
-        console.log('hey aidyn its working ------->>', data);
+        // console.log('hey aidyn its working ------->>', data);
 
         // change the state of the user here
         if (data.success) {
-            setIsAuthUser(true)
-            setUser(data?.finalData.user)
-            setFormData(intiialFormData)
-            Cookies.set('token', data.finalData?.token)
-            localStorage.setItem('user', JSON.stringify(data?.finalData?.user))
+            toast.success(data.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+            setIsAuthUser(true);
+            setUser(data?.finalData?.user);
+            setFormData(initialFormData);
+            Cookies.set("token", data?.finalData?.token);
+            localStorage.setItem("user", JSON.stringify(data?.finalData?.user));
+            setComponentLoader({ loading: false, id: "" });
         } else {
-
+            console.log(data.message);
+            toast.error(data.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
             setIsAuthUser(false);
+            setComponentLoader({ loading: false, id: "" });
         }
-
     }
 
     const isFormValid = () => {
@@ -56,10 +68,8 @@ export default function Login() {
     console.log('the isAuthUser------>', isAuthUser, 'the user-------->', user)
 
     useEffect(() => {
-        if (isAuthUser) {
-            router.push('/')
-        }
-    }, [isAuthUser])
+        if (isAuthUser) router.push("/");
+    }, [isAuthUser]);
 
     return (
 
@@ -97,7 +107,15 @@ export default function Login() {
                                     onClick={handleLogin}
                                     disabled={!isFormValid()}
                                     className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide">
-                                    Login
+
+                                    {
+                                        componentLoader && componentLoader.loading ?
+                                            <Loader
+                                                text={"Logingin In"}
+                                                color={"#ffffff"}
+                                                loading={componentLoader && componentLoader.loading}
+                                            /> : "Login"
+                                    }
                                 </button>
                                 <div className="flex flex-col gap-2">
                                     <p className="text-gray-600">New to Tias?</p>
@@ -117,6 +135,9 @@ export default function Login() {
 
                 </div>
             </div>
+            <Notification
+
+            />
         </div>
     )
 }

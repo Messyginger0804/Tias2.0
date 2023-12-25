@@ -1,11 +1,17 @@
 'use client'
+
 import InputComponent from "@/components/FormElements/Input"
 import Select from "@/components/FormElements/Select"
+import Loader from "@/components/loader"
+import Notification from "@/components/notification"
+import { GlobalContext } from "@/context"
 import { registerNewUser } from "@/services/register"
 import { isFormValid, registrationFormControls } from "@/utils"
-import { useState } from "react"
+import { useState, useEffect, useContext } from "react"
+import { toast } from "react-toastify";
 
-const isRegistered = false
+
+// const isRegistered = false
 // const isRegistered = true
 
 const initialFormData = {
@@ -17,11 +23,12 @@ const initialFormData = {
 
 export default function Register() {
 
-    const [formData, setFormData] = useState(initialFormData)
+    const [formData, setFormData] = useState(initialFormData);
+    const [isRegistered, setIsRegistered] = useState(false);
+    const { pageLoader, setpageLoader, isAuthUser } = useContext(GlobalContext);
 
 
-
-    // console.log(formData)
+    console.log('is this going through------->', isAuthUser)
 
     const isFormValid = () => {
         return formData &&
@@ -38,10 +45,30 @@ export default function Register() {
     console.log(isFormValid())
 
     const handleRegister = async () => {
+        setpageLoader(true);
         const data = await registerNewUser(formData);
 
-        console.log(data)
+        if (data.success) {
+            toast.success(data.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+            setIsRegistered(true);
+            setpageLoader(false);
+            setFormData(initialFormData);
+        } else {
+            toast.error(data.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+            setpageLoader(false);
+            setFormData(initialFormData);
+        }
+
+        console.log(data);
     }
+
+    useEffect(() => {
+        if (isAuthUser) router.push("/");
+    }, [isAuthUser]);
 
     return (
 
@@ -98,7 +125,15 @@ export default function Register() {
                                             disabled={!isFormValid()}
                                             onClick={handleRegister}
                                         >
-                                            Register
+                                            {pageLoader ? (
+                                                <Loader
+                                                    text={"Registering"}
+                                                    color={"#ffffff"}
+                                                    loading={pageLoader}
+                                                />
+                                            ) : (
+                                                "Register"
+                                            )}
                                         </button>
                                     </div>
                             }
@@ -109,6 +144,8 @@ export default function Register() {
 
                 </div>
             </div>
+            <Notification
+            />
         </div>
     )
 }

@@ -8,22 +8,28 @@ export const GlobalContext = createContext(null);
 
 export default function GlobalState({ children }) {
     const [showNavModal, setShowNavModal] = useState(false);
-    const [isAuthUser, setIsAuthUser] = useState(false);
+    const [pageLoader, setPageLoader] = useState({
+        loading: false,
+        id: "",
+    })
+    const [commponentLoader, setComponentLoader] = useState(false)
+    const [isAuthUser, setIsAuthUser] = useState(null);
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        console.log(Cookies.get('token'))
+        // console.log(Cookies.get('token'))
 
         const userLoggedIn = Cookies.get('token')
 
         if (userLoggedIn !== undefined) {
-            setIsAuthUser(isAuthUser)
-            const userData = JSON.parse(localStorage.getItem('user')) || {}
-            setUser(userData)
-        } else {
-            setIsAuthUser(false)
-        }
+            setIsAuthUser(true);
+            const userData = JSON.parse(localStorage.getItem("user")) || {};
+            setUser(userData);
 
+        } else {
+            setIsAuthUser(false);
+            setUser({}); //unauthenticated user
+        }
     }, [Cookies])
 
     return (
@@ -31,6 +37,8 @@ export default function GlobalState({ children }) {
             showNavModal, setShowNavModal,
             isAuthUser, setIsAuthUser,
             user, setUser,
+            pageLoader, setPageLoader,
+            commponentLoader, setComponentLoader,
         }}>
             {children}
         </GlobalContext.Provider>

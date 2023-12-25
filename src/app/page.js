@@ -10,8 +10,8 @@ export default function Home() {
   const { user } = useContext(GlobalContext)
 
 
-  console.log(isAuthUser);
-  console.log(user);
+  // console.log(isAuthUser);
+  // console.log(user);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

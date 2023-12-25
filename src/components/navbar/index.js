@@ -6,6 +6,7 @@ import { Fragment, useContext } from "react";
 import CommonModal from "../CommonModal";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Cookies from "js-cookie";
+// import { useRouter } from "next/router";
 import { useRouter } from "next/navigation";
 
 
@@ -72,7 +73,7 @@ function Navbar() {
         setShowCartModal
     } = useContext(GlobalContext);
 
-    console.log(user, isAuthUser, 'navabar------');
+    // console.log(user, isAuthUser, 'navabar------');
 
     const handleLogOut = () => {
         setIsAuthUser(false);
@@ -113,7 +114,7 @@ function Navbar() {
                         user ? <button className="btn1"
                             onClick={handleLogOut}
                         >Logout</button> : <button className="btn1"
-                        //  onClick={router.push('/login')}
+                            onClick={router.push('/login')}
                         >Login</button>
                     }
                     <button
