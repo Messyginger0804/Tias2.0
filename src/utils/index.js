@@ -7,7 +7,7 @@ export const navOptions = [
     {
         id: "listing",
         label: "All Products",
-        path: "/product/listing/all-products",
+        path: "/product/listing/allProducts",
     },
     {
         id: "listingMen",
@@ -30,12 +30,12 @@ export const adminNavOptions = [
     {
         id: "adminListing",
         label: "Manage All Products",
-        path: "/admin-view/all-products",
+        path: "/adminView/allProducts",
     },
     {
         id: "adminNewProduct",
         label: "Add New Product",
-        path: "/admin-view/add-product",
+        path: "/adminView/addProduct",
     },
 ];
 
