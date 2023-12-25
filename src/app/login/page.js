@@ -22,7 +22,7 @@ export default function Login() {
     const {
         componentLoader, setComponentLoader,
         isAuthUser, setIsAuthUser,
-        user, setUser,
+        user, setUser, pageLoader
     } = useContext(GlobalContext)
 
     const router = useRouter();
@@ -108,14 +108,21 @@ export default function Login() {
                                     disabled={!isFormValid()}
                                     className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide">
 
-                                    {
-                                        componentLoader && componentLoader.loading ?
-                                            <Loader
-                                                text={"Logingin In"}
-                                                color={"#ffffff"}
-                                                loading={componentLoader && componentLoader.loading}
-                                            /> : "Login"
-                                    }
+                                    {componentLoader ? (
+                                        <componentLoader
+                                            text={"Loging in..."}
+                                            color={"#ffffff"}
+                                            loading={pageLoader}
+                                        />
+                                        // {componentLoader ? (
+                                        //     <componentLoaderLoader
+                                        //         text={"Loging in..."}
+                                        //         color={"#ffffff"}
+                                        //         loading={pageLoader}
+                                        //     />
+                                    ) : (
+                                        "Login"
+                                    )}
                                 </button>
                                 <div className="flex flex-col gap-2">
                                     <p className="text-gray-600">New to Tias?</p>

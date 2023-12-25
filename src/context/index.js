@@ -8,11 +8,11 @@ export const GlobalContext = createContext(null);
 
 export default function GlobalState({ children }) {
     const [showNavModal, setShowNavModal] = useState(false);
-    const [pageLoader, setPageLoader] = useState({
+    const [pageLoader, setPageLoader] = useState(true)
+    const [commponentLoader, setComponentLoader] = useState({
         loading: false,
         id: "",
     })
-    const [commponentLoader, setComponentLoader] = useState(false)
     const [isAuthUser, setIsAuthUser] = useState(null);
     const [user, setUser] = useState(null);
 
