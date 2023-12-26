@@ -10,7 +10,7 @@ export default function Tile({ data, selected = [], onClick }) {
                 data.map(dataItem => (
                     <label
                         className="cursor-pointer"
-                        key={data.id}
+                        key={dataItem.id}
                     >
                         <span
                             className="rounded-lg border border-black px-6 py-2 font-bold">
