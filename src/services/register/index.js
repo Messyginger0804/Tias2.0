@@ -10,7 +10,7 @@ export const registerNewUser = async (formData) => {
         // console.log(response)
 
         // const finalData = await response.json();
-        const finalData = response.json();
+        const finalData = await response.json();
 
         // const finalData = response
 

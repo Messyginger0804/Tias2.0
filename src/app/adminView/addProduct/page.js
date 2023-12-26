@@ -2,10 +2,16 @@
 
 import Select from "@/components/FormElements/Select"
 import Tile from "@/components/FormElements/Tile"
-import { AvailableSizes, adminAddProductformControls } from "@/utils"
+import { AvailableSizes, adminAddProductformControls, firebaseConfig } from "@/utils"
 import InputComponent from "@/components/FormElements/Input"
-export default function AdminAddProduct() {
 
+
+
+const app = initializeApp(firebaseConfig);
+
+
+
+export default function AdminAddProduct() {
 
     const handleImage = () => {
         console.log('let me know that this is working')

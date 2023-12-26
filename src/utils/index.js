@@ -202,13 +202,13 @@ export const AvailableSizes = [
 ];
 
 export const firebaseConfig = {
-    apiKey: "API_KEY",
-    authDomain: "AUTH_DOMAIN",
-    projectId: "PROJECT_ID",
-    storageBucket: "STROAGE_BUCKET",
-    messagingSenderId: "MESSAGING_SENDER_ID",
-    appId: "APP_ID",
-    measurementId: "MEASUREMENT_ID",
+    apiKey: "AIzaSyDn6-GWKw1cy0_UlzgrLP9OGR_timYctDE",
+    authDomain: "tias-thenewone.firebaseapp.com",
+    projectId: "tias-thenewone",
+    storageBucket: "tias-thenewone.appspot.com",
+    messagingSenderId: "724378780514",
+    appId: "1:724378780514:web:9f5a4228f65473933da23b",
+    measurementId: "G-299VG4TKJC"
 };
 
 export const firebaseStroageURL =
@@ -252,7 +252,27 @@ export const addNewAddressFormControls = [
     },
 ];
 
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
 
+// // Your web app's Firebase configuration
+// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDn6-GWKw1cy0_UlzgrLP9OGR_timYctDE",
+//   authDomain: "tias-thenewone.firebaseapp.com",
+//   projectId: "tias-thenewone",
+//   storageBucket: "tias-thenewone.appspot.com",
+//   messagingSenderId: "724378780514",
+//   appId: "1:724378780514:web:9f5a4228f65473933da23b",
+//   measurementId: "G-299VG4TKJC"
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
 
 // ***************************FUNCTIONS************************
 
