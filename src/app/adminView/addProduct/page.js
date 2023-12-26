@@ -5,8 +5,14 @@ import Tile from "@/components/FormElements/Tile"
 import { AvailableSizes, adminAddProductformControls } from "@/utils"
 import InputComponent from "@/components/FormElements/Input"
 export default function AdminAddProduct() {
+
+
     const handleImage = () => {
         console.log('let me know that this is working')
+    }
+
+    const handleAddProduct = () => {
+        console.log('this should be adding the product')
     }
     return (
         <div className="w-full mx-0 mt-5 mb-0 relative">
@@ -26,28 +32,32 @@ export default function AdminAddProduct() {
 
                         />
                     </div>
-                    {
-                        adminAddProductformControls.map(controlItem => (
-                            controlItem.componentType === 'input' ? (
-                                <InputComponent
-                                    type={controlItem.type}
-                                    placeholder={controlItem.placeholder}
-                                    label={controlItem.label}
-                                />)
-                                :
-                                controlItem.componentType === 'select' ? (
-                                    <Select
-                                        type={controlItem.type}
-                                        placeholder={controlItem.placeholder}
-                                        label={controlItem.label}
-                                        options={controlItem.options}
-                                    />)
-                                    : null
-                        ))
-                    }
+                    {adminAddProductformControls.map((controlItem) =>
+                        controlItem.componentType === "input" ? (
+                            <InputComponent
+                                type={controlItem.type}
+                                placeholder={controlItem.placeholder}
+                                label={controlItem.label}
+                            // value={formData[controlItem.id]}
+
+                            />
+                        ) : controlItem.componentType === "select" ? (
+                            <Select
+                                label={controlItem.label}
+                                options={controlItem.options}
+                            // value={formData[controlItem.id]}
+
+                            />
+                        ) : null
+                    )}
+                    <button
+                        onClick={handleAddProduct}
+                        className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
+                    >
+                        Add Product
+                    </button>
 
                 </div>
-
             </div>
         </div>
     )
