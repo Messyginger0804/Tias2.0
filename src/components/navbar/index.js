@@ -41,6 +41,7 @@ function NavItems({ isModalView = false, isAdminView, router }) {
                             className="cursor-pointer block py-2 pl-3 pr-4 text-gray-900 rounded md:p-0"
                             key={item.id}
                             onClick={() => router.push(item.path)}
+                        // onClick={() => console.log(item.path)}
                         >
                             {item.label}
                         </li>
@@ -155,17 +156,20 @@ function Navbar() {
                 <NavItems
                     isModal={false}
                     isAdminView={isAdminView}
+                    router={router}
                 />
             </div>
 
         </nav >
         <CommonModal
+            showModalTitle={false}
             show={showNavModal}
             setShow={setShowNavModal}
             mainContent={
                 <NavItems
                     isModalView={true}
                     isAdminView={isAdminView}
+                    router={router}
                 />}
         />
     </>
