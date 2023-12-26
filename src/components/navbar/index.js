@@ -101,6 +101,7 @@ function Navbar() {
                     <Image
                         src={logo}
                         width={95}
+                        priority
                     />
                 </div>
                 <div className="flex md:order-2 gap-2">
