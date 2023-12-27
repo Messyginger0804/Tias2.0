@@ -212,7 +212,7 @@ export const firebaseConfig = {
 };
 
 export const firebaseStroageURL =
-    "YOUR_FIREBASE_STROAGE_URL";
+    "gs://tias-thenewone.appspot.com";
 
 export const addNewAddressFormControls = [
     {

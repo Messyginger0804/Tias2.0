@@ -2,19 +2,58 @@
 
 import Select from "@/components/FormElements/Select"
 import Tile from "@/components/FormElements/Tile"
-import { AvailableSizes, adminAddProductformControls, firebaseConfig } from "@/utils"
+import { AvailableSizes, adminAddProductformControls, firebaseConfig, firebaseStroageURL } from "@/utils"
 import InputComponent from "@/components/FormElements/Input"
-
-
+import { initializeApp } from "firebase/app";
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
+import { useState } from "react"
 
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app, firebaseStroageURL)
 
+const createFileName = (getFile) => {
+    const timeStamp = Date.now()
+    const randomStringValue = Math.random().toString(36).substring(2, 12)
+
+    return `${getFile.name} - ${timeStamp}- ${randomStringValue}`
+}
+
+async function helperUploadImage(file) {
+    const getFileName = createFileName(file)
+    const storageRef = ref(storage, `ecommerce/${getFileName}`)
+    const uploadImage = uploadBytesResumable(storageRef, file)
+
+    return new Promise((resolve, reject) => {
+        uploadImage.on(
+            "state_changed",
+            (snapshot) => { },
+            (error) => {
+                console.log(error);
+                reject(error);
+            },
+            () => {
+                getDownloadURL(uploadImage.snapshot.ref)
+                    .then((downloadUrl) => resolve(downloadUrl))
+                    .catch((error) => reject(error));
+            }
+        );
+    });
+}
+
+const initialFormData = {
+
+}
 
 
 export default function AdminAddProduct() {
 
-    const handleImage = () => {
-        console.log('let me know that this is working')
+    const [formData, setFormData] = useState(initi)
+
+    const handleImage = async () => {
+        console.log('let me know that this is working' + event.target.files)
+        const extractImageURL = await helperUploadImage(event.target.files[0])
+
+        console.log(extractImageURL)
     }
 
     const handleAddProduct = () => {
