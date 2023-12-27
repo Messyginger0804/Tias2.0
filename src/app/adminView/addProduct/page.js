@@ -41,20 +41,37 @@ async function helperUploadImage(file) {
 }
 
 const initialFormData = {
-
-}
+    name: "",
+    price: 0,
+    description: "",
+    category: "men",
+    sizes: [],
+    deliveryInfo: "",
+    onSale: "no",
+    imageUrl: "",
+    priceDrop: 0,
+};
 
 
 export default function AdminAddProduct() {
 
-    const [formData, setFormData] = useState(initi)
+    const [formData, setFormData] = useState(initialFormData)
 
     const handleImage = async () => {
-        console.log('let me know that this is working' + event.target.files)
+        // console.log('let me know that this is working' + event.target.files)
         const extractImageURL = await helperUploadImage(event.target.files[0])
 
-        console.log(extractImageURL)
+        // console.log(extractImageURL)
+
+        if (extractImageURL !== "") {
+            setFormData({
+                ...formData,
+                imageUrl: extractImageURL,
+            });
+        }
     }
+
+    console.log(formData)
 
     const handleAddProduct = () => {
         console.log('this should be adding the product')
@@ -83,15 +100,25 @@ export default function AdminAddProduct() {
                                 type={controlItem.type}
                                 placeholder={controlItem.placeholder}
                                 label={controlItem.label}
-                            // value={formData[controlItem.id]}
-
+                                value={formData[controlItem.id]}
+                                onChange={(event) => {
+                                    setFormData({
+                                        ...formData,
+                                        [controlItem.id]: event.target.value,
+                                    });
+                                }}
                             />
                         ) : controlItem.componentType === "select" ? (
                             <Select
                                 label={controlItem.label}
                                 options={controlItem.options}
-                            // value={formData[controlItem.id]}
-
+                                value={formData[controlItem.id]}
+                                onChange={(event) => {
+                                    setFormData({
+                                        ...formData,
+                                        [controlItem.id]: event.target.value,
+                                    });
+                                }}
                             />
                         ) : null
                     )}

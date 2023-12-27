@@ -102,6 +102,7 @@ function Navbar() {
                         src={logo}
                         width={95}
                         priority
+                        alt="Tias Shop"
                     />
                 </div>
                 <div className="flex md:order-2 gap-2">
