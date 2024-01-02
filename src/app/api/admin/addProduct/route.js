@@ -27,7 +27,7 @@ export async function POST(req) {
         const user = 'admin'
 
         // check if user is an admin
-        if (user == admin) {
+        if (user == 'admin') {
 
             const extractData = await req.json()
 

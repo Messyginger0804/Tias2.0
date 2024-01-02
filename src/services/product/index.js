@@ -1,20 +1,18 @@
-
-
-
-
+import Cookies from "js-cookie";
 
 /// add new product service
 
+
 export const addNewProduct = async (formData) => {
     try {
-        const response = await fetch('/api/admin/addProduct', {
-            method: 'POST',
+        const response = await fetch("/api/admin/add-product", {
+            method: "POST",
             headers: {
-                'content-type': 'application/json',
-                Authorization: `Bearer ${Cookies.get('token')}`
+                "content-type": "application/json",
+                Authorization: `Bearer ${Cookies.get("token")}`,
             },
-            body: JSON.stringify(formData)
-        })
+            body: JSON.stringify(formData),
+        });
 
         const data = await response.json();
 

@@ -7,7 +7,7 @@ import InputComponent from "@/components/FormElements/Input"
 import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
 import { useState } from "react"
-import { INTERNALS } from "next/dist/server/web/spec-extension/request"
+import { addNewProduct } from "@/services/product"
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app, firebaseStroageURL)
@@ -92,8 +92,13 @@ export default function AdminAddProduct() {
 
     console.log(formData)
 
-    const handleAddProduct = () => {
+    const handleAddProduct = async (formData) => {
         console.log('this should be adding the product')
+
+        const response = await addNewProduct(formData);
+
+        console.log(response)
+
     }
     return (
         <div className="w-full mx-0 mt-5 mb-0 relative">

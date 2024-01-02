@@ -8,12 +8,13 @@ const password = process.env.MONGOPASS
 const cluster = process.env.MONGOCLUST
 
 const configOptions = {
-    useNewUrlParser: true,
+    // useNewUrlParser: true,
     useUnifiedTopology: true,
 };
 
 const connectToDB = async () => {
     const connectionUrl =
+        // try {
         `mongodb+srv://${user}:${password}@${cluster}.fzyfrtb.mongodb.net/`;
 
     console.log(connectionUrl)
@@ -24,6 +25,11 @@ const connectToDB = async () => {
         .catch((err) =>
             console.log(`Getting Error from DB connection ${err.message}`)
         );
+
+    // } catch (error) {
+    //     console.log(error);
+    //     console.log("Error in connection to the database");
+    // }
 };
 
 export default connectToDB;
