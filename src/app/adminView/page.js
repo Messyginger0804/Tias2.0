@@ -3,7 +3,7 @@
 
 function AdminView() {
     return (
-        <div>AdminView</div>
+        <div className="text-black text-center mt-10">AdminView</div>
     )
 }
 

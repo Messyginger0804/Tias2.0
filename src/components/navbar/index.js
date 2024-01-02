@@ -76,7 +76,7 @@ function Navbar() {
         setShowCartModal
     } = useContext(GlobalContext);
 
-    console.log(user, isAuthUser, 'navabar------', pathName);
+    // console.log(user, isAuthUser, 'navabar------', pathName);
 
     const handleLogOut = () => {
         setIsAuthUser(false);

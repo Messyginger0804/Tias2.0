@@ -65,7 +65,7 @@ export default function Login() {
             : false;
     }
 
-    console.log('the isAuthUser------>', isAuthUser, 'the user-------->', user)
+    // console.log('the isAuthUser------>', isAuthUser, 'the user-------->', user)
 
     useEffect(() => {
         if (isAuthUser) router.push("/");

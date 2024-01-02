@@ -7,6 +7,7 @@ import InputComponent from "@/components/FormElements/Input"
 import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
 import { useState } from "react"
+import { INTERNALS } from "next/dist/server/web/spec-extension/request"
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app, firebaseStroageURL)
@@ -57,9 +58,9 @@ export default function AdminAddProduct() {
 
     const [formData, setFormData] = useState(initialFormData)
 
-    const handleImage = async () => {
-        // console.log('let me know that this is working' + event.target.files)
-        const extractImageURL = await helperUploadImage(event.target.files[0])
+    const handleImage = async (e) => {
+        // console.log('let me know that this is working' + e.target.files)
+        const extractImageURL = await helperUploadImage(e.target.files[0])
 
         // console.log(extractImageURL)
 
@@ -69,6 +70,24 @@ export default function AdminAddProduct() {
                 imageUrl: extractImageURL,
             });
         }
+    }
+
+    const handleTileClick = (getCurrentItem) => {
+        console.log(getCurrentItem)
+
+        let copySizes = [...formData.sizes]
+        const index = copySizes.findIndex(item => item.id === getCurrentItem.id);
+
+        if (index === -1) {
+            copySizes.push(getCurrentItem)
+        } else {
+            copySizes = copySizes.filter(item => item.id !== getCurrentItem.id);
+        }
+
+        setFormData({
+            ...formData,
+            sizes: copySizes,
+        });
     }
 
     console.log(formData)
@@ -90,6 +109,8 @@ export default function AdminAddProduct() {
                     <div className="flex gap-2 flex-col">
                         <label>Available sizes</label>
                         <Tile
+                            selected={formData.sizes}
+                            onClick={handleTileClick}
                             data={AvailableSizes}
 
                         />
@@ -101,10 +122,10 @@ export default function AdminAddProduct() {
                                 placeholder={controlItem.placeholder}
                                 label={controlItem.label}
                                 value={formData[controlItem.id]}
-                                onChange={(event) => {
+                                onChange={(e) => {
                                     setFormData({
                                         ...formData,
-                                        [controlItem.id]: event.target.value,
+                                        [controlItem.id]: e.target.value,
                                     });
                                 }}
                             />
@@ -113,10 +134,10 @@ export default function AdminAddProduct() {
                                 label={controlItem.label}
                                 options={controlItem.options}
                                 value={formData[controlItem.id]}
-                                onChange={(event) => {
+                                onChange={(e) => {
                                     setFormData({
                                         ...formData,
-                                        [controlItem.id]: event.target.value,
+                                        [controlItem.id]: e.target.value,
                                     });
                                 }}
                             />
