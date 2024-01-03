@@ -112,14 +112,8 @@ export default function Login() {
                                         <componentLoader
                                             text={"Loging in..."}
                                             color={"#ffffff"}
-                                            loading={pageLoader}
+                                            loading={componentLoader && componentLoader.loading}
                                         />
-                                        // {componentLoader ? (
-                                        //     <componentLoaderLoader
-                                        //         text={"Loging in..."}
-                                        //         color={"#ffffff"}
-                                        //         loading={pageLoader}
-                                        //     />
                                     ) : (
                                         "Login"
                                     )}

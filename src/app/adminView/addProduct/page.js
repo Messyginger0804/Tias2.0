@@ -11,6 +11,7 @@ import { addNewProduct } from "@/services/product"
 import { GlobalContext } from "@/context"
 import { toast } from "react-toastify"
 import Notification from "@/components/notification"
+import ComponentLoader from "@/components/loader"
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app, firebaseStroageURL)
@@ -178,7 +179,15 @@ export default function AdminAddProduct() {
                         onClick={handleAddProduct}
                         className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
                     >
-                        Add Product
+                        {
+                            componentLoader && componentLoader.loading ?
+                                <ComponentLoader
+                                    text={"Adding Product..."}
+                                    color={"#ffffff"}
+                                    loading={componentLoader && componentLoader.loading}
+                                /> : 'Add Product'
+                        }
+                        {/* Add Product */}
                     </button>
 
                 </div>
