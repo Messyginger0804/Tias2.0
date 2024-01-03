@@ -6,8 +6,11 @@ import { AvailableSizes, adminAddProductformControls, firebaseConfig, firebaseSt
 import InputComponent from "@/components/FormElements/Input"
 import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { addNewProduct } from "@/services/product"
+import { GlobalContext } from "@/context"
+import { toast } from "react-toastify"
+import Notification from "@/components/notification"
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app, firebaseStroageURL)
@@ -57,6 +60,9 @@ const initialFormData = {
 export default function AdminAddProduct() {
 
     const [formData, setFormData] = useState(initialFormData)
+    const {
+        componentLoader, setComponentLoader,
+    } = useContext(GlobalContext)
 
     const handleImage = async (e) => {
         // console.log('let me know that this is working' + e.target.files)
@@ -95,10 +101,30 @@ export default function AdminAddProduct() {
     const handleAddProduct = async (formData) => {
         console.log('this should be adding the product')
 
-        const response = await addNewProduct(formData);
+        setComponentLoader({ loading: true, id: '' })
 
-        console.log(response)
+        const res = await addNewProduct(formData);
 
+        console.log(res, '=======this is from addproduct page =====');
+
+        if (res.success) {
+            setComponentLevelLoader({ loading: false, id: "" });
+            toast.success(res.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+
+            setFormData(initialFormData);
+            // setCurrentUpdatedProduct(null)
+            // setTimeout(() => {
+            //     router.push("/admin-view/all-products");
+            // }, 1000);
+        } else {
+            toast.error(res.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+            setComponentLevelLoader({ loading: false, id: "" });
+            setFormData(initialFormData);
+        }
     }
     return (
         <div className="w-full mx-0 mt-5 mb-0 relative">
@@ -157,6 +183,7 @@ export default function AdminAddProduct() {
 
                 </div>
             </div>
+            <Notification />
         </div>
     )
 }
