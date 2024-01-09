@@ -22,12 +22,18 @@ export const addNewProduct = async (formData) => {
     }
 }
 
-export const getAllProducts = async (formData) => {
+export const getAllAdminProducts = async () => {
     try {
-        const response = await fetch("/api/admin/allProduct", {
-            // const response = await fetch("http://localhost:3000/api/admin/allProduct", {
+        // const response = await fetch("/api/admin/allProducts", {
+        const response = await fetch("http://localhost:3000/api/admin/allProducts", {
             method: "GET",
+            cache: 'no-store'
         });
+
+        if (!response.ok) {
+            console.error(`Error: ${response.statusText}`);
+            return;
+        }
 
         const data = await response.json();
 

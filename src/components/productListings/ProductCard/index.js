@@ -26,13 +26,7 @@ function ProductCard({ item }) {
     return (
         <div className="text-black">
             <div className="over-hidden aspect-w-1 aspect-h-1 h-52">
-                {/* <Image
-                    src={item.imageUrl}
-                    alt={item.name}
-                    className='h-full w-full object-cover transition-all duration-300 group-hover:scale-125'
-                    width='300'
-                    height='300'
-                /> */}
+
                 <img
                     src={item.imageUrl}
                     alt={item.name}
