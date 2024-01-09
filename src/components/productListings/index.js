@@ -32,7 +32,7 @@
 const fakeData = [
     {
 
-        _id: 659d938902a508d9f3e109c8,
+        _id: '659d938902a508d9f3e109c8',
         name: "mens tshirt blue",
         description: "slim fit blue mens t-shirt",
         price: 19,
@@ -58,7 +58,15 @@ export default function ProductListing() {
     >
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
             <div className="mt-10 grid grid-cols gap-6 sm:grid-cols-4 sm:gap-4 lg:mt-16">
+                {
+                    fakeData && fakeData.length ?
+                        fakeData.map(item =>
+                            <article key={item._id}>
 
+                            </article>
+                        )
+                        : null;
+}
             </div>
         </div>
     </section>
