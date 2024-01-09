@@ -22,32 +22,20 @@ export const addNewProduct = async (formData) => {
     }
 }
 
-// export const addNewProduct = async (formData) => {
-//     try {
-//         const response = await fetch("/api/admin/addProduct", {
-//             method: "POST",
-//             headers: {
-//                 "content-type": "application/json",
-//                 Authorization: `Bearer ${Cookies.get("token")}`,
-//             },
-//             body: JSON.stringify(formData),
-//         });
+export const getAllProducts = async (formData) => {
+    try {
+        const response = await fetch("/api/admin/allProduct", {
+            // const response = await fetch("http://localhost:3000/api/admin/allProduct", {
+            method: "GET",
+        });
 
-//         const data = await response.json();
+        const data = await response.json();
 
-//         // Log specific properties to avoid circular references
-//         const logData = {
-//             success: data.success,
-//             message: data.message,
-//             // Add other relevant fields here
-//         };
-
-//         console.log(logData);
-
-//         return data;
-//     } catch (error) {
-//         console.error(error, 'error in adding new product in the services/product/index');
-//     }
-// };
+        console.log(data)
+        return data
+    } catch (error) {
+        console.error(error, 'error in getting products in the services/product/index');
+    }
+}
 
 
