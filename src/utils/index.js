@@ -1,3 +1,5 @@
+// export const isAdminView = pathName.includes("adminView");
+
 export const navOptions = [
     {
         id: "home",

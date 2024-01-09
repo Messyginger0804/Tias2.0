@@ -50,8 +50,10 @@ const fakeData = [
         deliveryInfo: "same day",
         onSale: "yes",
         priceDrop: 24,
-        imageUrl: "https://firebasestorage.googleapis.com/v0/b/tias-thenewone.appspot.com…",
+        imageUrl: "https://firebasestorage.googleapis.com/v0/b/tias-thenewone.appspot.com/o/ecommerce%2Fmens-shirt-blue.jpg%20-%201704825600763-%20e0f5pczn66?alt=media&token=5977c51e-7b86-42dd-9327-ba887b34cbbf",
     },
+
+    // https://firebasestorage.googleapis.com/v0/b/tias-thenewone.appspot.com/o/ecommerce%2Fmens-shirt-blue.jpg%20-%201704825600763-%20e0f5pczn66?alt=media&token=5977c51e-7b86-42dd-9327-ba887b34cbbf
 ];
 
 export default function ProductListing() {
@@ -64,7 +66,10 @@ export default function ProductListing() {
                 {
                     fakeData && fakeData.length ?
                         fakeData.map(item =>
-                            <article key={item._id}>
+                            <article
+                                className="realitive flex flex-col overflow-hidden border cursor-pointer"
+                                key={item._id}
+                            >
                                 <ProductCard item={item} />
                                 <ProductButton />
                             </article>

@@ -1,16 +1,16 @@
 
 
 
-// import CommonListing from "@/components/CommonListing";
 // import { getAllAdminProducts } from "@/services/product";
+
+import ProductListing from "@/components/productListings";
 
 
 
 export default async function AdminAllProducts() {
     return (
-        <div className="text-center">
-            allProducts
-        </div>)
+        <ProductListing />
+    )
 
     // const allAdminProducts = await getAllAdminProducts()
 

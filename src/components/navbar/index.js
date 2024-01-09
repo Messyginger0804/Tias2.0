@@ -1,7 +1,7 @@
 'use client'
 
 import { GlobalContext } from "@/context";
-import { adminNavOptions, navOptions } from "@/utils";
+import { adminNavOptions, isAdminView, navOptions } from "@/utils";
 import { Fragment, useContext, useEffect } from "react";
 import CommonModal from "../CommonModal";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -20,7 +20,9 @@ import logo from '/public/logo.png'
 //     role: 'admin',
 // }
 
+
 function NavItems({ isModalView = false, isAdminView, router }) {
+
     return (
         <div
             className={`items-center justify-between w-full md:flex md:w-auto ${isModalView ? "" : "hidden"
