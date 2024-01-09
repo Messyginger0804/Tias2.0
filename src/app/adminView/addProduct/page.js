@@ -97,7 +97,7 @@ export default function AdminAddProduct() {
         });
     }
 
-    console.log(formData)
+    // console.log(formData)
 
     const handleAddProduct = async (formData) => {
         console.log('this should be adding the product')
@@ -109,7 +109,7 @@ export default function AdminAddProduct() {
         console.log(res, '=======this is from addproduct page =====');
 
         if (res.success) {
-            setComponentLevelLoader({ loading: false, id: "" });
+            setComponentLoader({ loading: false, id: "" });
             toast.success(res.message, {
                 position: toast.POSITION.TOP_RIGHT,
             });
@@ -123,7 +123,7 @@ export default function AdminAddProduct() {
             toast.error(res.message, {
                 position: toast.POSITION.TOP_RIGHT,
             });
-            setComponentLevelLoader({ loading: false, id: "" });
+            setComponentLoader({ loading: false, id: "" });
             setFormData(initialFormData);
         }
     }
@@ -132,6 +132,7 @@ export default function AdminAddProduct() {
             <div className="flex flex-col items-start justify-start p-10 bg-white shadow-2xl rounded-xl relative text-black">
                 <div className="w-full mt-6 mb-0 mx-0 space-y-8">
                     <input
+                        // key={image.id}
                         accept="image/*"
                         max={1000000}
                         type="file"

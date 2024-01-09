@@ -26,7 +26,7 @@ const protectedAdminRoutes = [
 export default function GlobalState({ children }) {
     const [showNavModal, setShowNavModal] = useState(false);
     const [pageLevelLoader, setPageLevelLoader] = useState(true);
-    const [componentLevelLoader, setComponentLevelLoader] = useState({
+    const [componentLoader, setComponentLoader] = useState({
         loading: false,
         id: "",
     });
@@ -68,17 +68,17 @@ export default function GlobalState({ children }) {
         }
     }, [Cookies]);
 
-    useEffect(() => {
-        if (
-            pathName !== "/register" &&
-            !pathName.includes("product") &&
-            pathName !== "/" &&
-            user &&
-            Object.keys(user).length === 0 &&
-            protectedRoutes.includes(pathName) > -1
-        )
-            router.push("/login");
-    }, [user, pathName]);
+    // useEffect(() => {
+    //     if (
+    //         pathName !== "/register" &&
+    //         !pathName.includes("product") &&
+    //         pathName !== "/" &&
+    //         user &&
+    //         Object.keys(user).length === 0 &&
+    //         protectedRoutes.includes(pathName) > -1
+    //     )
+    //         router.push("/login");
+    // }, [user, pathName]);
 
     useEffect(() => {
         if (
@@ -94,6 +94,8 @@ export default function GlobalState({ children }) {
     return (
         <GlobalContext.Provider
             value={{
+                pathName,
+                router,
                 showNavModal,
                 setShowNavModal,
                 pageLevelLoader,
@@ -102,8 +104,8 @@ export default function GlobalState({ children }) {
                 setIsAuthUser,
                 user,
                 setUser,
-                componentLevelLoader,
-                setComponentLevelLoader,
+                componentLoader,
+                setComponentLoader,
                 currentUpdatedProduct,
                 setCurrentUpdatedProduct,
                 showCartModal,

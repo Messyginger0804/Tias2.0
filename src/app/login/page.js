@@ -1,7 +1,8 @@
 'use client'
 
 import InputComponent from "@/components/FormElements/Input"
-import Loader from "@/components/loader"
+import ComponentLoader from "@/components/loader"
+// import Loader from "@/components/loader"
 import Notification from "@/components/notification"
 import { GlobalContext } from "@/context"
 import { login } from "@/services/login"
@@ -109,7 +110,7 @@ export default function Login() {
                                     className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide">
 
                                     {componentLoader ? (
-                                        <componentLoader
+                                        <ComponentLoader
                                             text={"Loging in..."}
                                             color={"#ffffff"}
                                             loading={componentLoader && componentLoader.loading}
