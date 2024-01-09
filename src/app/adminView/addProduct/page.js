@@ -99,34 +99,16 @@ export default function AdminAddProduct() {
 
     // console.log(formData)
 
+
+
     const handleAddProduct = async (formData) => {
-        console.log('this should be adding the product')
+        console.log('this should be adding the product', formData);
+        const res = await addNewProduct(formData)
 
-        setComponentLoader({ loading: true, id: '' })
+        console.log(res);
+    };
 
-        const res = await addNewProduct(formData);
 
-        console.log(res, '=======this is from addproduct page =====');
-
-        if (res.success) {
-            setComponentLoader({ loading: false, id: "" });
-            toast.success(res.message, {
-                position: toast.POSITION.TOP_RIGHT,
-            });
-
-            setFormData(initialFormData);
-            // setCurrentUpdatedProduct(null)
-            // setTimeout(() => {
-            //     router.push("/admin-view/all-products");
-            // }, 1000);
-        } else {
-            toast.error(res.message, {
-                position: toast.POSITION.TOP_RIGHT,
-            });
-            setComponentLoader({ loading: false, id: "" });
-            setFormData(initialFormData);
-        }
-    }
     return (
         <div className="w-full mx-0 mt-5 mb-0 relative">
             <div className="flex flex-col items-start justify-start p-10 bg-white shadow-2xl rounded-xl relative text-black">
@@ -177,9 +159,30 @@ export default function AdminAddProduct() {
                         ) : null
                     )}
                     <button
-                        onClick={handleAddProduct}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handleAddProduct(formData);
+                        }}
                         className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
                     >
+
+                        {/* <button
+    onClick={(e) => {
+        e.preventDefault();
+        handleAddProduct(formData);
+    }}
+    className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
+>
+    {
+        componentLoader && componentLoader.loading ?
+            <ComponentLoader
+                text={"Adding Product..."}
+                color={"#ffffff"}
+                loading={componentLoader && componentLoader.loading}
+            /> : 'Add Product'
+    }
+</button>
+*/}
                         {
                             componentLoader && componentLoader.loading ?
                                 <ComponentLoader

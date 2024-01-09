@@ -13,23 +13,23 @@ const configOptions = {
 };
 
 const connectToDB = async () => {
-    const connectionUrl =
-        // try {
-        `mongodb+srv://${user}:${password}@${cluster}.fzyfrtb.mongodb.net/`;
+    try {
+        const connectionUrl =
+            `mongodb+srv://${user}:${password}@${cluster}.fzyfrtb.mongodb.net/`;
 
-    console.log(connectionUrl)
+        console.log(connectionUrl)
 
-    mongoose
-        .connect(connectionUrl, configOptions)
-        .then(() => console.log("Mongo database connected successfully!"))
-        .catch((err) =>
-            console.log(`Getting Error from DB connection ${err.message}`)
-        );
+        mongoose
+            .connect(connectionUrl, configOptions)
+            .then(() => console.log("Mongo database connected successfully!"))
+            .catch((err) =>
+                console.log(`Getting Error from DB connection ${err.message}`)
+            );
 
-    // } catch (error) {
-    //     console.log(error);
-    //     console.log("Error in connection to the database");
-    // }
+    } catch (error) {
+        console.log(error);
+        console.log("Error in connection to the database");
+    }
 };
 
 export default connectToDB;
