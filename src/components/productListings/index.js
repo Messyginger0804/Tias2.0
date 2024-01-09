@@ -1,5 +1,8 @@
 'use client'
 
+import ProductButton from "./ProductButton";
+import ProductCard from "./ProductCard";
+
 
 // _id
 // 659d938902a508d9f3e109c8
@@ -62,11 +65,12 @@ export default function ProductListing() {
                     fakeData && fakeData.length ?
                         fakeData.map(item =>
                             <article key={item._id}>
-
+                                <ProductCard item={item} />
+                                <ProductButton />
                             </article>
                         )
-                        : null;
-}
+                        : null
+                }
             </div>
         </div>
     </section>
