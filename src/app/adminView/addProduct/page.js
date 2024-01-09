@@ -63,6 +63,8 @@ export default function AdminAddProduct() {
     const [formData, setFormData] = useState(initialFormData)
     const {
         componentLoader, setComponentLoader,
+        currentUpdatedProduct, setCurrentUpdatedProduct,
+        router,
     } = useContext(GlobalContext)
 
     const handleImage = async (e) => {
@@ -101,12 +103,38 @@ export default function AdminAddProduct() {
 
 
 
-    const handleAddProduct = async (formData) => {
+    const handleAddProduct = async (e) => {
+        e.preventDefault();
+
         console.log('this should be adding the product', formData);
-        const res = await addNewProduct(formData)
+        setComponentLoader({ loading: true, id: "" });
+        const res =
+            currentUpdatedProduct !== null
+                ? await updateAProduct(formData)
+                : await addNewProduct(formData);
 
         console.log(res);
-    };
+
+        if (res.success) {
+            setComponentLoader({ loading: false, id: "" });
+            toast.success(res.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+
+            setFormData(initialFormData);
+            setCurrentUpdatedProduct(null)
+            setTimeout(() => {
+                router.push("/adminView/allProducts");
+            }, 1000);
+        } else {
+            toast.error(res.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+            setComponentLoader({ loading: false, id: "" });
+            setFormData(initialFormData);
+        }
+    }
+
 
 
     return (
@@ -159,30 +187,10 @@ export default function AdminAddProduct() {
                         ) : null
                     )}
                     <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            handleAddProduct(formData);
-                        }}
+                        onClick={handleAddProduct}
+
                         className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
                     >
-
-                        {/* <button
-    onClick={(e) => {
-        e.preventDefault();
-        handleAddProduct(formData);
-    }}
-    className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
->
-    {
-        componentLoader && componentLoader.loading ?
-            <ComponentLoader
-                text={"Adding Product..."}
-                color={"#ffffff"}
-                loading={componentLoader && componentLoader.loading}
-            /> : 'Add Product'
-    }
-</button>
-*/}
                         {
                             componentLoader && componentLoader.loading ?
                                 <ComponentLoader
