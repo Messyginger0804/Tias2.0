@@ -27,7 +27,7 @@ export const getAllAdminProducts = async () => {
         // const response = await fetch("/api/admin/allProducts", {
         const response = await fetch("http://localhost:3000/api/admin/allProducts", {
             method: "GET",
-            cache: 'no-store'
+            cache: 'reload'
         });
 
         if (!response.ok) {
