@@ -18,7 +18,7 @@ export const addNewProduct = async (formData) => {
         console.log(data)
         return data
     } catch (error) {
-        console.error(error, 'error in adding new product in the services/product/index');
+        console.error(error, 'error in adding new product in the services/product/index(addNewProduct)');
     }
 }
 
@@ -40,8 +40,26 @@ export const getAllAdminProducts = async () => {
         console.log(data)
         return data
     } catch (error) {
-        console.error(error, 'error in getting products in the services/product/index');
+        console.error(error, 'error in getting products in the services/product/index(getAllProducts)');
     }
 }
 
+export const updateProduct = async (formData) => {
+    try {
+        const response = await fetch("http://localhost:3000/api/admin/updateProducts", {
+            Method: "PUT",
+            headers: {
+                "content-type": "application/json",
+                Authorization: `Bearer ${Cookies.get("token")}`,
+            },
+            body: JSON.stringify(formData),
+        })
 
+        const data = await response.json()
+
+        return data
+
+    } catch (error) {
+        console.error(error, 'error in getting products in the services/product/index(updateProduct)');
+    }
+}
