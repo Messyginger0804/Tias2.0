@@ -27,7 +27,11 @@ const fakeData = [
     // https://firebasestorage.googleapis.com/v0/b/tias-thenewone.appspot.com/o/ecommerce%2Fmens-shirt-blue.jpg%20-%201704825600763-%20e0f5pczn66?alt=media&token=5977c51e-7b86-42dd-9327-ba887b34cbbf
 ];
 
-export default function ProductListing({ data }) {
+// let data = fakeData
+
+export default function ProductListing(
+    { data }
+) {
 
     return <section
         className="bg-whtie py-12 sm:py-16"
@@ -38,7 +42,7 @@ export default function ProductListing({ data }) {
                     data && data.length ?
                         data.map(item =>
                             <article
-                                className="realitive flex flex-col overflow-hidden border cursor-pointer"
+                                className="realitive flex flex-col overflow-hiden border cursor-pointer"
                                 key={item._id}
                             >
                                 <ProductCard item={item} />
