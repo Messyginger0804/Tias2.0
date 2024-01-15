@@ -1,5 +1,6 @@
 'use client'
 
+import { useContext, useEffect } from "react";
 import ProductButton from "./ProductButton";
 import ProductCard from "./ProductCard";
 
@@ -32,7 +33,11 @@ const fakeData = [
 export default function ProductListing(
     { data }
 ) {
+    const { router } = useContext();
 
+    useEffect(() => {
+        router.refresh();
+    }, [])
     return <section
         className="bg-whtie py-12 sm:py-16"
     >

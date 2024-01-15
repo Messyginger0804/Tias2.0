@@ -6,8 +6,8 @@ import { AvailableSizes, adminAddProductformControls, firebaseConfig, firebaseSt
 import InputComponent from "@/components/FormElements/Input"
 import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
-import { useContext, useState } from "react"
-import { addNewProduct } from "@/services/product"
+import { useContext, useEffect, useState } from "react"
+import { addNewProduct, updateAProduct } from "@/services/product"
 import { GlobalContext } from "@/context"
 import { toast } from "react-toastify"
 import Notification from "@/components/notification"
@@ -63,10 +63,17 @@ export default function AdminAddProduct() {
     const {
         componentLoader, setComponentLoader,
         currentUpdatedProduct, setCurrentUpdatedProduct,
-        router,
+        router, pathName
     } = useContext(GlobalContext)
 
     // console.log(currentUpdatedProduct);
+
+    useEffect(() => {
+
+        if (currentUpdatedProduct !== null) {
+            setFormData(currentUpdatedProduct);
+        }
+    }, [pathName, currentUpdatedProduct])
 
     const handleImage = async (e) => {
         // console.log('let me know that this is working' + e.target.files)
@@ -114,7 +121,7 @@ export default function AdminAddProduct() {
                 ? await updateAProduct(formData)
                 : await addNewProduct(formData);
 
-        // console.log(res);
+        console.log(res);
 
         if (res.success) {
             setComponentLoader({ loading: false, id: "" });
@@ -125,7 +132,7 @@ export default function AdminAddProduct() {
             setFormData(initialFormData);
             setCurrentUpdatedProduct(null)
             setTimeout(() => {
-                router.push("/adminView/allProducts");
+                router.push("/admin-view/all-products");
             }, 1000);
         } else {
             toast.error(res.message, {
@@ -136,7 +143,7 @@ export default function AdminAddProduct() {
         }
     }
 
-
+    // console.log(formData);
 
     return (
         <div className="w-full mx-0 mt-5 mb-0 relative">

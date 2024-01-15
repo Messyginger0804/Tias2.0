@@ -46,23 +46,23 @@ export const getAllAdminProducts = async () => {
 
 export const updateAProduct = async (formData) => {
     try {
-        const response = await fetch("http://localhost:3000/api/admin/updateProducts", {
-            Method: "PUT",
+        const res = await fetch("/api/admin/updateProduct", {
+            method: "PUT",
             headers: {
                 "content-type": "application/json",
                 Authorization: `Bearer ${Cookies.get("token")}`,
             },
+            cache: "no-store",
             body: JSON.stringify(formData),
-        })
+        });
 
-        const data = await response.json()
+        const data = await res.json();
 
-        return data
-
-    } catch (error) {
-        console.error(error, 'error in getting products in the services/product/index(updateProduct)');
+        return data;
+    } catch (e) {
+        console.error(e, "Error in the services/product/index.js");
     }
-}
+};
 
 export const deleteAProduct = async (id) => {
     try {

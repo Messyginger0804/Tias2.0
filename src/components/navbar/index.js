@@ -4,11 +4,11 @@ import { GlobalContext } from "@/context";
 import { adminNavOptions, isAdminView, navOptions } from "@/utils";
 import { Fragment, useContext, useEffect } from "react";
 import CommonModal from "../CommonModal";
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { GiHamburgerMenu } from "react-icons/gi";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
-import Image from "next/image";
-import logo from '/public/logo.png'
+// import Image from "next/image";
+// import logo from '/public/logo.png'
 
 
 // const isAdminView = true;
@@ -75,13 +75,13 @@ export default function Navbar() {
 
     // console.log(currentUpdatedProduct, "navbar");
 
-    // useEffect(() => {
-    //     if (
-    //         pathName !== "/admin-view/add-product" &&
-    //         currentUpdatedProduct !== null
-    //     )
-    //         setCurrentUpdatedProduct(null);
-    // }, [pathName]);
+    useEffect(() => {
+        if (
+            pathName !== "/admin-view/add-product" &&
+            currentUpdatedProduct !== null
+        )
+            setCurrentUpdatedProduct(null);
+    }, [pathName]);
 
     function handleLogout() {
         setIsAuthUser(false);
