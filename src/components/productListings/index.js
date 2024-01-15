@@ -46,7 +46,7 @@ export default function ProductListing(
                                 key={item._id}
                             >
                                 <ProductCard item={item} />
-                                <ProductButton />
+                                <ProductButton item={item} />
                             </article>
                         )
                         : null
