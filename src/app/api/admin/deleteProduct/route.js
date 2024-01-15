@@ -19,7 +19,7 @@ export async function DELETE(req) {
 
         const deletedProduct = await Product.findByIdAndDelete(id);
 
-        if (!deletedProduct) {
+        if (deletedProduct) {
 
             return NextResponse.json({ success: true, message: 'Product deleted successfully' });
         } else {

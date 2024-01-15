@@ -3,44 +3,49 @@ import connectToDB from "@/mongodb";
 import { NextResponse } from "next/server";
 
 
+export const dynamic = "force-dynamic";
 
-export const dynamic = 'force-dynamic';
-
-export const Put = async (req) => {
+export async function PUT(req) {
     try {
         await connectToDB();
+
         const extractedData = await req.json();
 
         const {
             _id,
             name, price,
             description, category, sizes, deliveryInfo, onSale, priceDrop, imageUrl
-        } = extractedData
+        } = extractedData;
 
-        const updatedProduct = await Product.findOneAndUpdate({
-            _id: _id,
-        }, {
-            name, price,
-            description, category, sizes, deliveryInfo, onSale, priceDrop, imageUrl
-        }, { new: true });
+        const updatedProduct = await Product.findOneAndUpdate(
+            {
+                _id: _id,
+            },
+            {
+                _id,
+                name, price,
+                description, category, sizes, deliveryInfo, onSale, priceDrop, imageUrl
+            },
+            { new: true }
+        );
 
-        if (updateProduct) {
+        if (updatedProduct) {
             return NextResponse.json({
                 success: true,
-                message: "The product has been updated successfully.",
+                message: "Product updated successfully",
             });
         } else {
             return NextResponse.json({
                 success: false,
-                message: "Failed to update. Please try again. If problem persists please contact your support.",
+                message: "Failed to update the product ! Please try again later",
             });
         }
 
-    } catch (error) {
+    } catch (e) {
         console.log(error);
         return NextResponse.json({
             success: false,
-            message: "Something went wrong ! Please try again later",
+            message: "Something went wrong! (in api/admin/updateProduct/route.js) Please try again later",
         });
     }
 }

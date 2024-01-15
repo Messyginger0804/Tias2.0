@@ -3,6 +3,7 @@
 import { useContext, useEffect } from "react";
 import ProductButton from "./ProductButton";
 import ProductCard from "./ProductCard";
+import { GlobalContext } from "@/context";
 
 const fakeData = [
     {
@@ -33,11 +34,14 @@ const fakeData = [
 export default function ProductListing(
     { data }
 ) {
-    const { router } = useContext();
+    const { router } = useContext(GlobalContext);
+
+    // console.log(router)
 
     useEffect(() => {
         router.refresh();
     }, [])
+
     return <section
         className="bg-whtie py-12 sm:py-16"
     >

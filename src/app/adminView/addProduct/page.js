@@ -111,15 +111,15 @@ export default function AdminAddProduct() {
 
 
 
-    const handleAddProduct = async (e) => {
-        e.preventDefault();
+    const handleAddProduct = async () => {
+        // e.preventDefault();
 
         // console.log('this should be adding the product', formData);
         setComponentLoader({ loading: true, id: "" });
-        const res =
-            currentUpdatedProduct !== null
-                ? await updateAProduct(formData)
-                : await addNewProduct(formData);
+        const res = await (currentUpdatedProduct !== null
+            ? updateAProduct(formData)
+
+            : addNewProduct(formData));
 
         console.log(res);
 
@@ -132,7 +132,7 @@ export default function AdminAddProduct() {
             setFormData(initialFormData);
             setCurrentUpdatedProduct(null)
             setTimeout(() => {
-                router.push("/admin-view/all-products");
+                router.push("/adminView/allProducts");
             }, 1000);
         } else {
             toast.error(res.message, {
@@ -142,6 +142,7 @@ export default function AdminAddProduct() {
             setFormData(initialFormData);
         }
     }
+
 
     // console.log(formData);
 

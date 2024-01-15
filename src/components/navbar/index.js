@@ -61,6 +61,8 @@ export default function Navbar() {
     const { showNavModal, setShowNavModal } = useContext(GlobalContext);
     const {
         user,
+        pathName,
+        router,
         isAuthUser,
         setIsAuthUser,
         setUser,
@@ -70,14 +72,15 @@ export default function Navbar() {
         setShowCartModal
     } = useContext(GlobalContext);
 
-    const pathName = usePathname();
-    const router = useRouter();
+    // const pathName = usePathname();
+    // const router = useRouter();
 
-    // console.log(currentUpdatedProduct, "navbar");
+    console.log(currentUpdatedProduct, "navbar");
+    // console.log(pathName);
 
     useEffect(() => {
         if (
-            pathName !== "/admin-view/add-product" &&
+            pathName !== "/adminView/addProduct" &&
             currentUpdatedProduct !== null
         )
             setCurrentUpdatedProduct(null);
