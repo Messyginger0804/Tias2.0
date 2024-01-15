@@ -33,7 +33,7 @@ async function helperUploadImage(file) {
             "state_changed",
             (snapshot) => { },
             (error) => {
-                console.log(error);
+                console.error(error);
                 reject(error);
             },
             () => {
@@ -59,13 +59,14 @@ const initialFormData = {
 
 
 export default function AdminAddProduct() {
-
     const [formData, setFormData] = useState(initialFormData)
     const {
         componentLoader, setComponentLoader,
         currentUpdatedProduct, setCurrentUpdatedProduct,
         router,
     } = useContext(GlobalContext)
+
+    // console.log(currentUpdatedProduct);
 
     const handleImage = async (e) => {
         // console.log('let me know that this is working' + e.target.files)
@@ -82,7 +83,7 @@ export default function AdminAddProduct() {
     }
 
     const handleTileClick = (getCurrentItem) => {
-        console.log(getCurrentItem)
+        // console.log(getCurrentItem)
 
         let copySizes = [...formData.sizes]
         const index = copySizes.findIndex(item => item.id === getCurrentItem.id);
@@ -106,14 +107,14 @@ export default function AdminAddProduct() {
     const handleAddProduct = async (e) => {
         e.preventDefault();
 
-        console.log('this should be adding the product', formData);
+        // console.log('this should be adding the product', formData);
         setComponentLoader({ loading: true, id: "" });
         const res =
             currentUpdatedProduct !== null
                 ? await updateAProduct(formData)
                 : await addNewProduct(formData);
 
-        console.log(res);
+        // console.log(res);
 
         if (res.success) {
             setComponentLoader({ loading: false, id: "" });
@@ -161,6 +162,7 @@ export default function AdminAddProduct() {
                     {adminAddProductformControls.map((controlItem) =>
                         controlItem.componentType === "input" ? (
                             <InputComponent
+                                key={controlItem.id}
                                 type={controlItem.type}
                                 placeholder={controlItem.placeholder}
                                 label={controlItem.label}
@@ -174,6 +176,7 @@ export default function AdminAddProduct() {
                             />
                         ) : controlItem.componentType === "select" ? (
                             <Select
+                                key={controlItem.id}
                                 label={controlItem.label}
                                 options={controlItem.options}
                                 value={formData[controlItem.id]}

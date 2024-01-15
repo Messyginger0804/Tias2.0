@@ -23,8 +23,8 @@ function ProductCard(
                     </p>
                 </div>
             ) : null}
-            {console.log(item.onSale)}
-            {console.log(item.deliveryInfo)}
+            {/* {console.log(item.onSale)} */}
+            {/* {console.log(item.deliveryInfo)} */}
 
             <div className="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
                 <div className="mb-2 flex items-center">
