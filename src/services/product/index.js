@@ -44,7 +44,7 @@ export const getAllAdminProducts = async () => {
     }
 }
 
-export const updateProduct = async (formData) => {
+export const updateAProduct = async (formData) => {
     try {
         const response = await fetch("http://localhost:3000/api/admin/updateProducts", {
             Method: "PUT",
@@ -61,5 +61,25 @@ export const updateProduct = async (formData) => {
 
     } catch (error) {
         console.error(error, 'error in getting products in the services/product/index(updateProduct)');
+    }
+}
+
+export const deleteAProduct = async (id) => {
+    try {
+        const response = await fetch('http://localhost:3000/api/admin/delteProduct', {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${Cookies.get('token')}`
+            }
+        });
+
+        const data = await res.json();
+
+        console.log(data, '-----------><<<< This is from the delete product in services');
+
+        return data;
+
+    } catch (error) {
+        console.error(error);
     }
 }
