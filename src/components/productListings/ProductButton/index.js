@@ -1,14 +1,13 @@
 'use client'
 
 import { GlobalContext } from "@/context";
-import { usePathname } from "next/navigation"
-import { useRouter } from "next/router";
 import { useContext } from "react";
 
 
 function ProductButton({ item }) {
-    const pathName = usePathname();
-    const { currentUpdatedProduct, setCurrentUpdatedProduct, router } = useContext(GlobalContext)
+    const { currentUpdatedProduct, setCurrentUpdatedProduct,
+        router,
+        pathName } = useContext(GlobalContext)
 
     const isAdminView = pathName.includes('adminView');
 

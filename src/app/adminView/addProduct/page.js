@@ -202,15 +202,18 @@ export default function AdminAddProduct() {
 
                         className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
                     >
-                        {
-                            componentLoader && componentLoader.loading ?
-                                <ComponentLoader
-                                    text={"Adding Product..."}
-                                    color={"#ffffff"}
-                                    loading={componentLoader && componentLoader.loading}
-                                /> : 'Add Product'
-                        }
-                        {/* Add Product */}
+                        {componentLoader && componentLoader.loading ? (
+                            <ComponentLoader
+                                text={currentUpdatedProduct !== null ? 'Updating Product' : "Adding Product"}
+                                color={"#ffffff"}
+                                loading={componentLoader && componentLoader.loading}
+                            />
+                        ) : currentUpdatedProduct !== null ? (
+                            "Update Product"
+
+                        ) : (
+                            "Add Product"
+                        )}
                     </button>
 
                 </div>

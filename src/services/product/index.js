@@ -27,7 +27,7 @@ export const getAllAdminProducts = async () => {
         // const response = await fetch("/api/admin/allProducts", {
         const response = await fetch("http://localhost:3000/api/admin/allProducts", {
             method: "GET",
-            cache: 'reload'
+            cache: 'no-store'
         });
 
         if (!response.ok) {
@@ -52,7 +52,7 @@ export const updateAProduct = async (formData) => {
                 "content-type": "application/json",
                 Authorization: `Bearer ${Cookies.get("token")}`,
             },
-            cache: "no-store",
+            cache: 'reload',
             body: JSON.stringify(formData),
         });
 
