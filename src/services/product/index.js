@@ -89,15 +89,17 @@ export const deleteAProduct = async (id) => {
 export const productByCategory = async (id) => {
 
     try {
-        const res = await fetch(`http://localhost:3000/api/admin/productsCategory?id=${id}`,
+        // const res = await fetch(`/api/admin/productCategory?id=${id}`,
+        const res = await fetch(`http://localhost:3000/api/admin/productCategory?id=${id}`,
             {
-                method: 'GET',
+                method: "GET",
+                cache: "no-store",
             }
         );
 
         const data = await res.json();
 
-        console.log(data);
+        console.log(data, '<----------- This is in the services/product/index.js');
 
         return data;
 
