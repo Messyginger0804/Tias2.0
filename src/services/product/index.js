@@ -85,3 +85,8 @@ export const deleteAProduct = async (id) => {
         console.error(error);
     }
 }
+
+// export const productByCategory = async (id) => {
+
+
+// }
