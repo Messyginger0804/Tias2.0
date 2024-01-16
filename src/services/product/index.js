@@ -15,7 +15,7 @@ export const addNewProduct = async (formData) => {
 
         const data = await response.json();
 
-        console.log(data, '----------addNewProduct')
+        // console.log(data, '----------addNewProduct')
         return data
     } catch (error) {
         console.error(error, 'error in adding new product in the services/product/index(addNewProduct)');
@@ -86,7 +86,23 @@ export const deleteAProduct = async (id) => {
     }
 }
 
-// export const productByCategory = async (id) => {
+export const productByCategory = async (id) => {
 
+    try {
+        const res = await fetch(`http://localhost:3000/api/admin/productsCategory?id=${id}`,
+            {
+                method: 'GET',
+            }
+        );
 
-// }
+        const data = await res.json();
+
+        console.log(data);
+
+        return data;
+
+    } catch (error) {
+        console.error(error);
+    }
+
+}
