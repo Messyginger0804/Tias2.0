@@ -90,7 +90,7 @@ export const productByCategory = async (id) => {
 
     try {
         // const res = await fetch(`/api/admin/productCategory?id=${id}`,
-        const res = await fetch(`http://localhost:3000/api/admin/productCategory?id=${id}`,
+        const res = await fetch(`http://localhost:3000/api/client/products/category?id=${id}`,
             {
                 method: "GET",
                 cache: "no-store",
