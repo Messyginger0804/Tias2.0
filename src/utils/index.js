@@ -41,9 +41,14 @@ export const navOptions = [
         path: "/product/listing/women",
     },
     {
-        id: "listingKids",
-        label: "kids",
-        path: "/product/listing/kids",
+        id: "listingKGirls",
+        label: "girls",
+        path: "/product/listing/girls",
+    },
+    {
+        id: "listingBoys",
+        label: "boys",
+        path: "/product/listing/boys",
     },
 ];
 
@@ -156,8 +161,12 @@ export const adminAddProductformControls = [
                 label: "Women",
             },
             {
-                id: "kids",
-                label: "Kids",
+                id: "girls",
+                label: "girls",
+            },
+            {
+                id: "boys",
+                label: "boys",
             },
         ],
     },
