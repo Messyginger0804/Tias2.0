@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import ProductButton from "./ProductButton";
 import ProductCard from "./ProductCard";
 import { GlobalContext } from "@/context";
+import Notification from "../notification";
 
 const fakeData = [
     {
@@ -62,5 +63,7 @@ export default function ProductListing(
                 }
             </div>
         </div>
+        <Notification
+        />
     </section>
 }

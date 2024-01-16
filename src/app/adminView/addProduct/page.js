@@ -130,6 +130,7 @@ export default function AdminAddProduct() {
             });
 
             setFormData(initialFormData);
+            setCurrentUpdatedProduct(null);
             setCurrentUpdatedProduct(null)
             setTimeout(() => {
                 router.push("/adminView/allProducts");
