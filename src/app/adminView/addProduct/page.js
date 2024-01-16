@@ -200,7 +200,6 @@ export default function AdminAddProduct() {
                     )}
                     <button
                         onClick={handleAddProduct}
-
                         className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
                     >
                         {componentLoader && componentLoader.loading ? (
@@ -211,7 +210,6 @@ export default function AdminAddProduct() {
                             />
                         ) : currentUpdatedProduct !== null ? (
                             "Update Product"
-
                         ) : (
                             "Add Product"
                         )}

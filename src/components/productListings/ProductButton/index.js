@@ -15,12 +15,13 @@ function ProductButton({ item }) {
 
     const isAdminView = pathName.includes('adminView');
 
-    const handleDeleteProduct = async (item) => {
-        const res = await deleteAProduct(item._id); // <-- Corrected
-        console.log(res, 'this should be deleting the product');
+    async function handleDeleteProduct(item) {
+        setComponentLoader({ loading: true, id: item._id });
+
+        const res = await deleteAProduct(item._id);
 
         if (res.success) {
-            setComponentLoader({ loading: true, id: "" });
+            setComponentLoader({ loading: false, id: "" });
             toast.success(res.message, {
                 position: toast.POSITION.TOP_RIGHT,
             });
@@ -29,9 +30,10 @@ function ProductButton({ item }) {
             toast.error(res.message, {
                 position: toast.POSITION.TOP_RIGHT,
             });
-            setComponentLoader({ loading: false, id: item._id });
+            setComponentLoader({ loading: false, id: "" });
         }
     }
+
 
     return isAdminView ? (
         <>
