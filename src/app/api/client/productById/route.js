@@ -23,19 +23,17 @@ export const GET = async (req) => {
 
         const getData = await Product.findById({ _id: productId });
 
-        if (getData) {
+        if (getData && getData.length) {
             return NextResponse.json({
                 success: true,
-                data: getData[0],
-                status: 200,
-                message: 'Product found and return successfully.'
-            })
+                data: getData[0]
+            });
         } else {
             return NextResponse.json({
                 success: false,
                 status: 204,
-                messsage: "No Product found. Refresh the page and try again"
-            })
+                message: "No Product found",
+            });
         }
 
     } catch (error) {

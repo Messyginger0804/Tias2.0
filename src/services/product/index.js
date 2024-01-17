@@ -90,7 +90,7 @@ export const productByCategory = async (id) => {
 
     try {
         // const res = await fetch(`/api/admin/productCategory?id=${id}`,
-        const res = await fetch(`http://localhost:3000/api/client/products/category?id=${id}`,
+        const res = await fetch(`http://localhost:3000/api/client/productByCategory?id=${id}`,
             {
                 method: "GET",
                 cache: "no-store",
@@ -98,7 +98,26 @@ export const productByCategory = async (id) => {
         );
 
         const data = await res.json();
+        // console.log(data, '<----------- This is in the services/product/index.js');
 
+        return data;
+
+    } catch (error) {
+        console.error(error);
+    }
+
+}
+
+export const productById = async (id) => {
+    try {
+        const res = await fetch(`http://localhost:3000/api/client/productById?id=${id}`,
+            {
+                method: "GET",
+                cache: "no-store",
+            }
+        );
+
+        const data = await res.json();
         console.log(data, '<----------- This is in the services/product/index.js');
 
         return data;

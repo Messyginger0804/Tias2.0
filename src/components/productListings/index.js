@@ -52,6 +52,7 @@ export default function ProductListing(
                     data && data.length ?
                         data.map(item =>
                             <article
+                                onClick={() => router.push(`/product/${item._id}`)}
                                 className="realitive flex flex-col overflow-hiden border cursor-pointer"
                                 key={item._id}
                             >
