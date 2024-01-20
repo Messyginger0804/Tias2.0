@@ -107,11 +107,12 @@ export default function Login() {
                                 <button
                                     onClick={handleLogin}
                                     disabled={!isFormValid()}
-                                    className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide">
-
-                                    {componentLoader ? (
+                                    className={`inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white transition-all duration-200 ease-in-out focus:shadow-md uppercase tracking-wide ${componentLoader && componentLoader.loading ? "opacity-50 cursor-not-allowed" : ""
+                                        }`}
+                                >
+                                    {componentLoader && componentLoader.loading ? (
                                         <ComponentLoader
-                                            text={"Loging in..."}
+                                            text={"Logging in..."}
                                             color={"#ffffff"}
                                             loading={componentLoader && componentLoader.loading}
                                         />
@@ -119,6 +120,7 @@ export default function Login() {
                                         "Login"
                                     )}
                                 </button>
+
                                 <div className="flex flex-col gap-2">
                                     <p className="text-gray-600">New to Tias?</p>
                                 </div>

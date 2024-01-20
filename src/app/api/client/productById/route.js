@@ -8,7 +8,6 @@ export const dynamic = 'force-dynamic';
 
 export const GET = async (req) => {
     try {
-
         await connectToDB();
         const { searchParams } = new URL(req.url);
         const productId = searchParams.get('id');
@@ -22,6 +21,8 @@ export const GET = async (req) => {
         }
 
         const getData = await Product.findById({ _id: productId });
+
+        console.log('??????????????????????????????????', getData);
 
         if (getData && getData.length) {
             return NextResponse.json({

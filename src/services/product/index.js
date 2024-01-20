@@ -117,8 +117,10 @@ export const productById = async (id) => {
             }
         );
 
+        console.log(res, '@@@@@@@@@@@@@@@@@@@@@@@@@@ look right here')
+
         const data = await res.json();
-        console.log(data, '<----------- This is in the services/product/index.js');
+        // console.log(data, '<----------- This is in the services/product/index.js');
 
         return data;
 
