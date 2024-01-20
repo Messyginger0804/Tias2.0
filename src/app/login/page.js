@@ -70,7 +70,7 @@ export default function Login() {
 
     useEffect(() => {
         if (isAuthUser) router.push("/");
-    }, [isAuthUser]);
+    }, [isAuthUser, router]);
 
     return (
 
