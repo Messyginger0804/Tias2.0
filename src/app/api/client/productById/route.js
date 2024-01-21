@@ -24,13 +24,14 @@ export const GET = async (req) => {
 
         console.log('??????????????????????????????????', getData);
 
-        console.table(getData)
+        // console.table(getData)
 
 
-        if (getData && getData.length) {
+        if (getData) {
             return NextResponse.json({
                 success: true,
-                data: getData[0]
+                // data: getData[0]
+                data: getData
             });
         } else {
             return NextResponse.json({
