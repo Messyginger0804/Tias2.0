@@ -33,7 +33,9 @@ function ProductCard(
                     <p className="mr-3 text-sm font-semibold">
                         {`$${item.price}`}
                     </p>
-                    {item.onSale === 'yes' && (<p className="text-red-900 font-bold">on sale</p>)}
+                    {
+                        item.onSale === 'yes' && (<p className="text-red-900 font-bold">on sale</p>)
+                    }
                 </div>
                 <h3 className="md-3 text-gray-400 text-sm">{item.name}</h3>
             </div>
