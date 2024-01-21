@@ -1,11 +1,19 @@
 'use client'
 
+import { useContext, useEffect } from "react";
 import ComponentLoader from "../loader";
 import Notification from "../notification";
+import { GlobalContext } from "@/context";
 
 
 
 export default function ProductDetails({ item }) {
+
+    const { router } = useContext(GlobalContext);
+
+    useEffect(() => {
+        router.refresh();
+    }, []);
 
 
     console.log('*********************', item);
@@ -62,12 +70,15 @@ export default function ProductDetails({ item }) {
                                 >
                                     ${item && item.price}
                                 </h1>
-                                {/* {item.onSale === "yes" ? (
-                                    <h1 className="text-3xl font-bold text-red-700">{`$${(
+                                {item.onSale === "yes" ? (
+                                    <p className="mr-3 text-2xl font-semibold text-red-700">{`$ ${(
                                         item.price -
                                         item.price * (item.priceDrop / 100)
-                                    ).toFixed(2)}`}</h1>
-                                ) : null} */}
+                                    ).toFixed(2)}`}</p>
+                                ) : null}
+                                {item.onSale === "yes" ? (
+                                    <p className="mr-3 text-sm font-semibold">{`-(${item.priceDrop}%)off`}</p>
+                                ) : null}
                             </div>
                             <button
                                 type="button"

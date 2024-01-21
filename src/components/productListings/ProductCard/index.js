@@ -1,11 +1,16 @@
 'use client'
 
 // import { fakeData } from "@/utils"
+import { GlobalContext } from "@/context"
+import { useContext } from "react"
 
 
 function ProductCard(
     { item }
 ) {
+
+    const { router } = useContext(GlobalContext)
+
     return (
         <div onClick={() => router.push(`/product/${item._id}`)} className="text-black">
             <div className="overflow-hideen aspect-w-1 aspect-h-1 h-52">
@@ -16,12 +21,16 @@ function ProductCard(
                 />
             </div>
             {item.onSale === "yes" ? (
-                // <div className="absolute top-0 m-2 rounded-full bg-black">
-                <p className="rounded-full p-1 text-[8px] font-bold uppercase tracking-wide text-black sm:py-1 sm:px-3">
-                    Sale
+                <div className="bg-black w-fit rounded">
+                    <p className="rounded-full p-1 text-[8px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
+                        Sale
+                    </p>
+                </div>
+            ) : (
+                <p className="rounded-full p-1 text-[8px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
+                    not Sale
                 </p>
-                // </div>
-            ) : null}
+            )}
             <div className="my-4 mx-auto flex w-10/12 flex-col items-start justify-between">
                 <div className="mb-2 flex">
                     <p
