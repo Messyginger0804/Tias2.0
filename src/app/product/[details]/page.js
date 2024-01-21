@@ -12,7 +12,7 @@ export default async function DetailsPage({ params }) {
     // const productDetailsData = params && params.details ? await productById(params.details) : null;
 
 
-    console.log(productDetailsData, '========HELLO WORLD============')
+    // console.log(productDetailsData, '========HELLO WORLD============')
 
     return <ProductDetails item={productDetailsData && productDetailsData.data} />
 }

@@ -17,7 +17,7 @@ const connectToDB = async () => {
         const connectionUrl =
             `mongodb+srv://${user}:${password}@${cluster}.fzyfrtb.mongodb.net/`;
 
-        console.log(connectionUrl)
+        // console.log(connectionUrl)
 
         mongoose
             .connect(connectionUrl, configOptions)
