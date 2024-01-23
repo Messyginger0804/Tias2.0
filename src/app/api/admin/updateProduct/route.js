@@ -1,3 +1,4 @@
+import AuthUser from "@/middleware/AuthUser";
 import Product from "@/models/products";
 import connectToDB from "@/mongodb";
 import { NextResponse } from "next/server";
@@ -9,35 +10,56 @@ export async function PUT(req) {
     try {
         await connectToDB();
 
-        const extractedData = await req.json();
+        const isAuthUser = await AuthUser(req);
 
-        const {
-            _id,
-            name, price,
-            description, category, sizes, deliveryInfo, onSale, priceDrop, imageUrl
-        } = extractedData;
-
-        const updatedProduct = await Product.findOneAndUpdate(
-            {
-                _id: _id,
-            },
-            {
+        if (isAuthUser?.role === "admin") {
+            const extractData = await req.json();
+            const {
                 _id,
-                name, price,
-                description, category, sizes, deliveryInfo, onSale, priceDrop, imageUrl
-            },
-            { new: true }
-        );
+                name,
+                price,
+                description,
+                category,
+                sizes,
+                deliveryInfo,
+                onSale,
+                priceDrop,
+                imageUrl,
+            } = extractData;
 
-        if (updatedProduct) {
-            return NextResponse.json({
-                success: true,
-                message: "Product updated successfully",
-            });
+            const updatedProduct = await Product.findOneAndUpdate(
+                {
+                    _id: _id,
+                },
+                {
+                    name,
+                    price,
+                    description,
+                    category,
+                    sizes,
+                    deliveryInfo,
+                    onSale,
+                    priceDrop,
+                    imageUrl,
+                },
+                { new: true }
+            );
+
+            if (updatedProduct) {
+                return NextResponse.json({
+                    success: true,
+                    message: "Product updated successfully",
+                });
+            } else {
+                return NextResponse.json({
+                    success: false,
+                    message: "Failed to update the product ! Please try again later",
+                });
+            }
         } else {
             return NextResponse.json({
                 success: false,
-                message: "Failed to update the product ! Please try again later",
+                message: "You are not authenticated",
             });
         }
 

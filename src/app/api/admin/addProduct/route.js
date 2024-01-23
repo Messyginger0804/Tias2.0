@@ -28,11 +28,10 @@ export async function POST(req) {
 
         const isAuthUser = await AuthUser(req);
 
-        console.log('i dont know what is wrong with yo0u or wrong with this ------00-0-0-0-0-0-0-0-0-0-------', isAuthUser);
+        console.log('------>>>>> LOOK RIGHT HERE', isAuthUser);
 
         // check if user is an admin
-        if (isAuthUser == 'admin') {
-
+        if (isAuthUser?.role == 'admin') {
             const extractData = await req.json()
 
             const {

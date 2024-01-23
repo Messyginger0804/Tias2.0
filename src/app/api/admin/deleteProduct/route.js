@@ -7,34 +7,42 @@ export const dynamic = "force-dynamic";
 export async function DELETE(req) {
     try {
         await connectToDB();
-        const { searchParams } = new URL(req.url);
-        const id = searchParams.get("id");
-        console.log("Received product ID:=======================>", id);  // Log the received ID
-        if (!id) {
+        const isAuthUser = await AuthUser(req);
+
+        if (isAuthUser?.role === "admin") {
+            const { searchParams } = new URL(req.url);
+            const id = searchParams.get("id");
+
+            if (!id)
+                return NextResponse.json({
+                    success: false,
+                    message: "Product ID is required",
+                });
+
+            const deletedProduct = await Product.findByIdAndDelete(id);
+
+            if (deletedProduct) {
+                return NextResponse.json({
+                    success: true,
+                    message: "Product deleted successfully",
+                });
+            } else {
+                return NextResponse.json({
+                    success: false,
+                    message: "Failed to delete the product ! Please try again",
+                });
+            }
+        } else {
             return NextResponse.json({
                 success: false,
-                message: "Product ID is required",
+                message: "You are not authenticated",
             });
         }
-
-        const deletedProduct = await Product.findByIdAndDelete(id);
-
-        if (!deletedProduct) {
-            return NextResponse.json({
-                success: false,
-                message: "Product not found or already deleted",
-            });
-        }
-
-        return NextResponse.json({
-            success: true,
-            message: "Product deleted successfully",
-        });
-    } catch (error) {
-        console.error(error);
+    } catch (e) {
+        console.log(error);
         return NextResponse.json({
             success: false,
-            message: "Something went wrong! Please try again later",
+            message: "Something went wrong ! Please try again later",
         });
     }
 }
