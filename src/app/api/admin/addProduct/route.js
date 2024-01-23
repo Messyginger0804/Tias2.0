@@ -1,3 +1,4 @@
+import AuthUser from "@/middleware/AuthUser";
 import Product from "@/models/products";
 import connectToDB from "@/mongodb";
 import Joi from "joi";
@@ -16,7 +17,6 @@ const AdminAddNewProductSchema = Joi.object({
 })
 
 
-
 export const dynamic = 'force-dynamic';
 
 export async function POST(req) {
@@ -26,8 +26,12 @@ export async function POST(req) {
         // check if user is authenticated
         const user = 'admin'
 
+        const isAuthUser = await AuthUser(req);
+
+        console.log('i dont know what is wrong with yo0u or wrong with this ------00-0-0-0-0-0-0-0-0-0-------', isAuthUser);
+
         // check if user is an admin
-        if (user == 'admin') {
+        if (isAuthUser == 'admin') {
 
             const extractData = await req.json()
 
