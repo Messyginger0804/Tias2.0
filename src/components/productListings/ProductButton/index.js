@@ -15,10 +15,13 @@ function ProductButton({ item }) {
 
     const isAdminView = pathName.includes('adminView');
 
+    // console.log(isAdminView, "<<<<<<<---------============----===----====--=-=-=-==-=-=")
+
     async function handleDeleteProduct(item) {
         setComponentLoader({ loading: true, id: item._id });
 
         const res = await deleteAProduct(item._id);
+        console.log('-------->>>>> look right here', res);
 
         if (res.success) {
             setComponentLoader({ loading: false, id: "" });
@@ -35,34 +38,34 @@ function ProductButton({ item }) {
     }
 
 
-    return isAdminView ? (
-        <>
-            <button
-                onClick={() => {
-                    setCurrentUpdatedProduct(item);
-                    router.push('/adminView/addProduct')
-                }}
-                className="mt-1.5 flex w-full justify-center bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-whtie hover:bg-slate-800">
-                update
-            </button>
-            <button
-                onClick={() => handleDeleteProduct(item)}
-                className="mt-1.5 flex w-full justify-center bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-whtie hover:bg-slate-800">
+    return isAdminView ? (<>
+        <button
+            onClick={() => {
+                setCurrentUpdatedProduct(item);
+                router.push('/adminView/addProduct') &&
+                    console.log('this should be updating the product');
+            }}
+            className="mt-1.5 flex w-full justify-center bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-whtie hover:bg-slate-800">
+            update
+        </button>
+        <button
+            onClick={() => handleDeleteProduct(item)}
+            className="mt-1.5 flex w-full justify-center bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-whtie hover:bg-slate-800">
 
-                {
-                    componentLoader &&
-                        componentLoader.loading &&
-                        item._id === componentLoader.id ? (
-                        <ComponentLoader
-                            text={"Deleting Product"}
-                            color={"#ffffff"}
-                            loading={componentLoader && componentLoader.loading}
-                        />) : (
-                        'delete'
-                    )
-                }
-            </button>
-        </>
+            {
+                componentLoader &&
+                    componentLoader.loading &&
+                    item._id === componentLoader.id ? (
+                    <ComponentLoader
+                        text={"Deleting Product"}
+                        color={"#ffffff"}
+                        loading={componentLoader && componentLoader.loading}
+                    />) : (
+                    'delete'
+                )
+            }
+        </button>
+    </>
     ) : (
         <>
             <button className="mt-1.5 flex w-full justify-center bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-whtie hover:bg-slate-800">
