@@ -4,21 +4,8 @@ import { GlobalContext } from "@/context";
 import { adminNavOptions, isAdminView, navOptions } from "@/utils";
 import { Fragment, useContext, useEffect } from "react";
 import CommonModal from "../CommonModal";
-// import { GiHamburgerMenu } from "react-icons/gi";
 import Cookies from "js-cookie";
-import { usePathname, useRouter } from "next/navigation";
-// import Image from "next/image";
-// import logo from '/public/logo.png'
-
-
-// const isAdminView = true;
-// const isAdminView = false;
-// const isAuthuser = true;
-// const isAuthUser = false;
-
-// const user = {
-//     role: 'admin',
-// }
+import CartModal from "../CartModal";
 
 
 function NavItems({ isModalView = false, isAdminView, router }) {
@@ -71,12 +58,6 @@ export default function Navbar() {
         showCartModal,
         setShowCartModal
     } = useContext(GlobalContext);
-
-    // const pathName = usePathname();
-    // const router = useRouter();
-
-    // console.log(currentUpdatedProduct, "navbar");
-    // console.log(pathName);
 
     useEffect(() => {
         if (
