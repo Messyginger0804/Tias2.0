@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 export const addToCart = async (formData) => {
     try {
-        res = await fetch('/api/cart/addToCart', {
+        const res = await fetch('/api/cart/addToCart', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

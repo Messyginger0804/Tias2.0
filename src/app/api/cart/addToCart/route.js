@@ -4,18 +4,15 @@ import connectToDB from "@/mongodb";
 import Joi from "joi";
 import { NextResponse } from "next/server";
 
-
-const addToCart = Joi.object({
+const AddToCart = Joi.object({
     userID: Joi.string().required(),
     productID: Joi.string().required(),
 });
 
+export const dynamic = "force-dynamic";
 
-export const dynamic = 'force-dynamic';
-
-export async function POST(reg) {
+export async function POST(req) {
     try {
-
         await connectToDB();
         const isAuthUser = await AuthUser(req);
 
@@ -23,7 +20,7 @@ export async function POST(reg) {
             const data = await req.json();
             const { productID, userID } = data;
 
-            const { error } = addToCart.validate({ userId, productID });
+            const { error } = AddToCart.validate({ userID, productID });
 
             if (error) {
                 return NextResponse.json({
@@ -32,19 +29,27 @@ export async function POST(reg) {
                 });
             }
 
-            const isCurrentCartItemExistsAlready = await Cart.find({
-                productId: productID,
-                userId: userID
-            })
+            console.log(productID, userID);
 
-            if (isCurrentCartItemExistsAlready) {
+            const isCurrentCartItemAlreadyThere = await Cart.find({
+                productID: productID,
+                userID: userID,
+            });
+
+            console.log(isCurrentCartItemAlreadyThere);
+
+
+            if (isCurrentCartItemAlreadyThere?.length > 0) {
                 return NextResponse.json({
                     success: false,
-                    message: "Product already added in the cart! Please add a different product",
+                    message:
+                        "Product is already added in cart! Please add different product",
                 });
             }
 
             const saveProductToCart = await Cart.create(data);
+
+            console.log(saveProductToCart);
 
             if (saveProductToCart) {
                 return NextResponse.json({
@@ -54,22 +59,20 @@ export async function POST(reg) {
             } else {
                 return NextResponse.json({
                     success: false,
-                    message: "failed to add product to cart ! Please try again.",
+                    message: "failed to add the product to cart ! Please try again.",
                 });
             }
-
         } else {
             return NextResponse.json({
                 success: false,
                 message: "You are not authenticated",
             });
         }
-
-    } catch (error) {
-        console.error(error);
+    } catch (e) {
+        console.log(e);
         return NextResponse.json({
             success: false,
-            message: "Something went wrong! (src/app/api/cart/addToCart/route.js) Please try again later",
+            message: "Something went wrong ! Please try again later",
         });
     }
 }

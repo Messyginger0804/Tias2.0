@@ -68,18 +68,6 @@ export default function GlobalState({ children }) {
         }
     }, [Cookies]);
 
-    // useEffect(() => {
-    //     if (
-    //         pathName !== "/register" &&
-    //         !pathName.includes("product") &&
-    //         pathName !== "/" &&
-    //         user &&
-    //         Object.keys(user).length === 0 &&
-    //         protectedRoutes.includes(pathName) > -1
-    //     )
-    //         router.push("/login");
-    // }, [user, pathName]);
-
     useEffect(() => {
         if (
             user !== null &&
