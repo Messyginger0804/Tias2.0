@@ -1,4 +1,5 @@
 import AuthUser from "@/middleware/AuthUser";
+import Cart from "@/models/cart";
 import connectToDB from "@/mongodb";
 import { NextResponse } from "next/server";
 
@@ -22,6 +23,20 @@ export async function DELETE(req) {
                 message: 'Cart item ID is required',
             });
 
+
+            const deleteCartItem = await Cart.findByIdAndDelete(id);
+
+            if (deleteCartItem) {
+                return NextResponse.json({
+                    success: true,
+                    message: 'Cart item deleted successfully',
+                })
+            } else {
+                return NextResponse.json({
+                    success: false,
+                    message: 'Failed to delete Cart item ! Please try again',
+                })
+            }
 
         } else {
             return NextResponse.json({
