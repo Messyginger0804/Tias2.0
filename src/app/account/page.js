@@ -1,7 +1,7 @@
 "use client";
 
 import InputComponent from "@/components/FormElements/Input";
-import Notification from "@/components/Notification";
+import Notification from "@/components/notification";
 import ComponentLoader from "@/components/loader";
 import { GlobalContext } from "@/context";
 import {
