@@ -63,7 +63,7 @@ export default function Account() {
             setAddressFormData({
                 fullName: "",
                 city: "",
-                country: "",
+                state: "",
                 postalCode: "",
                 address: "",
             });
@@ -77,7 +77,7 @@ export default function Account() {
             setAddressFormData({
                 fullName: "",
                 city: "",
-                country: "",
+                state: "",
                 postalCode: "",
                 address: "",
             });
@@ -89,7 +89,7 @@ export default function Account() {
         setAddressFormData({
             fullName: getCurrentAddress.fullName,
             city: getCurrentAddress.city,
-            country: getCurrentAddress.country,
+            state: getCurrentAddress.state,
             postalCode: getCurrentAddress.postalCode,
             address: getCurrentAddress.address,
         });
@@ -156,7 +156,8 @@ export default function Account() {
                                                 <p>Name : {item.fullName}</p>
                                                 <p>Address : {item.address}</p>
                                                 <p>City : {item.city}</p>
-                                                <p>Country : {item.country}</p>
+                                                <p>State : {item.state}</p>
+                                                {/* {console.log(item.state, '<<<<<--------')} */}
                                                 <p>PostalCode : {item.postalCode}</p>
                                                 <button
                                                     onClick={() => handleUpdateAddress(item)}

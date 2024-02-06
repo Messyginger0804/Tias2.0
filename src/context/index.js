@@ -39,7 +39,7 @@ export default function GlobalState({ children }) {
     const [addressFormData, setAddressFormData] = useState({
         fullName: "",
         city: "",
-        country: "",
+        state: "",
         postalCode: "",
         address: "",
     });

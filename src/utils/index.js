@@ -267,10 +267,10 @@ export const addNewAddressFormControls = [
         componentType: "input",
     },
     {
-        id: "country",
+        id: "state",
         type: "input",
-        placeholder: "Enter your country",
-        label: "Country",
+        placeholder: "Enter your state",
+        label: "State",
         componentType: "input",
     },
     {

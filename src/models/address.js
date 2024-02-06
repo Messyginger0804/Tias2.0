@@ -9,7 +9,7 @@ const NewAddressSchema = new mongoose.Schema(
         fullName: String,
         address: String,
         city: String,
-        country: String,
+        state: String,
         postalCode: String,
     },
     { timestamps: true }
