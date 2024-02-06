@@ -52,7 +52,7 @@ export default function CartModal() {
             })
         }
 
-        console.log('---*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-', res);
+        // console.log('---*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-', res);
     }
 
     useEffect(() => {
@@ -77,6 +77,7 @@ export default function CartModal() {
             setComponentLoader({ loading: false, id: getCartItemID });
         }
     }
+
     return (
         <CommonModal
             showButtons={true}
@@ -86,7 +87,6 @@ export default function CartModal() {
                 cartItems && cartItems.length ? (
                     <ul role="list" className="-my-6 divide-y divide-gray-300">
                         {cartItems.map((cartItem) => (
-                            console.log("look right here you dumb mother fucker", cartItems) &&
                             <li key={cartItem.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <img
@@ -123,14 +123,14 @@ export default function CartModal() {
                                             className="font-medium text-yellow-600 sm:order-2"
                                             onClick={() => handleDeleteCartItem(cartItem._id)}
                                         >
-                                            {componentLevelLoader &&
-                                                componentLevelLoader.loading &&
-                                                componentLevelLoader.id === cartItem._id ? (
-                                                <ComponentLevelLoader
+                                            {componentLoader &&
+                                                componentLoader.loading &&
+                                                componentLoader.id === cartItem._id ? (
+                                                <ComponentLoader
                                                     text={"Removing"}
                                                     color={"#000000"}
                                                     loading={
-                                                        componentLevelLoader && componentLevelLoader.loading
+                                                        componentLoader && componentLoader.loading
                                                     }
                                                 />
                                             ) : (

@@ -24,8 +24,6 @@ export const addToCart = async (formData) => {
 export const getAllCartItems = async (id) => {
     try {
         const res = await fetch(`/api/cart/allCartItems?id=${id}`, {
-            // const res = await fetch(`/api/cart/allCartItems?=${id}`, {
-            // const res = await fetch(`http://localhost:3000/api/cart/allCartItems?=${id}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${Cookies.get("token")}`,
@@ -42,13 +40,12 @@ export const getAllCartItems = async (id) => {
 
 export const deleteFromCart = async (id) => {
     try {
-        const res = await fetch(`/api/cart/deleteFromCart?=${id}`, {
+        const res = await fetch(`/api/cart/deleteFromCart?id=${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
                 Authorization: `Bearer ${Cookies.get('token')}`,
             },
-            body: JSON.stringify(formadata)
         });
 
         const data = await res.json();
@@ -57,5 +54,6 @@ export const deleteFromCart = async (id) => {
 
     } catch (error) {
         console.error(error);
+        console.log('there is an error in the services/cart/index.js');
     }
 };
