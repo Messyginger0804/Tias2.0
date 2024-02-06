@@ -1,27 +1,22 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 
-
-export const dynamic = 'force-dynamic';
-
+export const dynamic = "force-dynamic";
 
 const AuthUser = async (req) => {
+    const token = req.headers.get("Authorization")?.split(" ")[1];
 
-    const token = req.headers.get('Authorization')?.split(' ')[1];
-    // console.log('--------000000-------->>>>>>', token);
-
+    // console.log('will you just fucking look right here please', token);
     if (!token) return false;
 
     try {
-        const AuthUserInfo = jwt.verify(token, "default_secret_key");
-        if (AuthUserInfo) return AuthUserInfo;
+        const authUserInfo = await jwt.verify(token, "default_secret_key");
 
-        console.log(AuthUserInfo, '<<<<<<<**********_________---------------')
-
-    } catch (error) {
-        console.error(error);
+        // console.log(authUserInfo);
+        if (authUserInfo) return authUserInfo;
+    } catch (e) {
+        console.error(e);
         return false;
     }
-
 };
 
 export default AuthUser;

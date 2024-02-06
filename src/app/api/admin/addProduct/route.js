@@ -24,7 +24,7 @@ export async function POST(req) {
         await connectToDB()
 
         // check if user is authenticated
-        const user = 'admin'
+        // const user = 'admin'
 
         const isAuthUser = await AuthUser(req);
 

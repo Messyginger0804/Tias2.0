@@ -29,14 +29,14 @@ export async function POST(req) {
                 });
             }
 
-            console.log(productID, userID);
+            // console.log(productID, userID);
 
             const isCurrentCartItemAlreadyThere = await Cart.find({
                 productID: productID,
                 userID: userID,
             });
 
-            console.log(isCurrentCartItemAlreadyThere);
+            // console.log(isCurrentCartItemAlreadyThere);
 
 
             if (isCurrentCartItemAlreadyThere?.length > 0) {
@@ -49,7 +49,7 @@ export async function POST(req) {
 
             const saveProductToCart = await Cart.create(data);
 
-            console.log(saveProductToCart);
+            // console.log(saveProductToCart);
 
             if (saveProductToCart) {
                 return NextResponse.json({

@@ -41,7 +41,7 @@ function ProductButton({ item }) {
     }
 
     async function handleAddToCart(getItem) {
-        console.log('This should be adding to the cart');
+        // console.log('This should be adding to the cart');
 
         setComponentLoader({ loading: true, id: getItem._id });
         const res = await addToCart({ productID: getItem._id, userID: user._id });

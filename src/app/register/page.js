@@ -25,7 +25,7 @@ export default function Register() {
 
     const [formData, setFormData] = useState(initialFormData);
     const [isRegistered, setIsRegistered] = useState(false);
-    const { pageLoader, setpageLoader, isAuthUser } = useContext(GlobalContext);
+    const { pageLoader, setPageLoader, isAuthUser } = useContext(GlobalContext);
 
 
     console.log('is this going through------->', isAuthUser)
@@ -45,7 +45,7 @@ export default function Register() {
     console.log(isFormValid())
 
     const handleRegister = async () => {
-        setpageLoader(true);
+        setPageLoader(true);
         const data = await registerNewUser(formData);
 
         if (data.success) {
@@ -53,13 +53,13 @@ export default function Register() {
                 position: toast.POSITION.TOP_RIGHT,
             });
             setIsRegistered(true);
-            setpageLoader(false);
+            setPageLoader(false);
             setFormData(initialFormData);
         } else {
             toast.error(data.message, {
                 position: toast.POSITION.TOP_RIGHT,
             });
-            setpageLoader(false);
+            setPageLoader(false);
             setFormData(initialFormData);
         }
 

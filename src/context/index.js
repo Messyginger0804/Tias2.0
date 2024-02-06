@@ -25,7 +25,7 @@ const protectedAdminRoutes = [
 
 export default function GlobalState({ children }) {
     const [showNavModal, setShowNavModal] = useState(false);
-    const [pageLevelLoader, setPageLevelLoader] = useState(true);
+    const [pageLoader, setPageLoader] = useState(true);
     const [componentLoader, setComponentLoader] = useState({
         loading: false,
         id: "",
@@ -70,6 +70,18 @@ export default function GlobalState({ children }) {
 
     useEffect(() => {
         if (
+            pathName !== "/register" &&
+            !pathName.includes("product") &&
+            pathName !== "/" &&
+            user &&
+            Object.keys(user).length === 0 &&
+            protectedRoutes.includes(pathName) > -1
+        )
+            router.push("/login");
+    }, [user, pathName]);
+
+    useEffect(() => {
+        if (
             user !== null &&
             user &&
             Object.keys(user).length > 0 &&
@@ -78,7 +90,6 @@ export default function GlobalState({ children }) {
         )
             router.push("/unauthorized-page");
     }, [user, pathName]);
-
     return (
         <GlobalContext.Provider
             value={{
@@ -86,8 +97,8 @@ export default function GlobalState({ children }) {
                 router,
                 showNavModal,
                 setShowNavModal,
-                pageLevelLoader,
-                setPageLevelLoader,
+                pageLoader,
+                setPageLoader,
                 isAuthUser,
                 setIsAuthUser,
                 user,

@@ -6,6 +6,7 @@ import { GlobalContext } from "@/context";
 import { deleteFromCart, getAllCartItems } from "@/services/cart";
 import { toast } from "react-toastify";
 import ComponentLoader from "../loader";
+import { NextResponse } from "next/server";
 
 export default function CartModal() {
     const {
@@ -44,9 +45,14 @@ export default function CartModal() {
                     : [];
             setCartItems(updatedData);
             localStorage.setItem("cartItems", JSON.stringify(updatedData));
+        } else {
+            new NextResponse({
+                success: false,
+                message: "There was an error in getAllCartItems",
+            })
         }
 
-        console.log(res);
+        console.log('---*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-', res);
     }
 
     useEffect(() => {
@@ -71,7 +77,6 @@ export default function CartModal() {
             setComponentLoader({ loading: false, id: getCartItemID });
         }
     }
-
     return (
         <CommonModal
             showButtons={true}
@@ -81,6 +86,7 @@ export default function CartModal() {
                 cartItems && cartItems.length ? (
                     <ul role="list" className="-my-6 divide-y divide-gray-300">
                         {cartItems.map((cartItem) => (
+                            console.log("look right here you dumb mother fucker", cartItems) &&
                             <li key={cartItem.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <img
@@ -117,14 +123,14 @@ export default function CartModal() {
                                             className="font-medium text-yellow-600 sm:order-2"
                                             onClick={() => handleDeleteCartItem(cartItem._id)}
                                         >
-                                            {componentLoader &&
-                                                componentLoader.loading &&
-                                                componentLoader.id === cartItem._id ? (
-                                                <ComponentLoader
+                                            {componentLevelLoader &&
+                                                componentLevelLoader.loading &&
+                                                componentLevelLoader.id === cartItem._id ? (
+                                                <ComponentLevelLoader
                                                     text={"Removing"}
                                                     color={"#000000"}
                                                     loading={
-                                                        componentLoader && componentLoader.loading
+                                                        componentLevelLoader && componentLevelLoader.loading
                                                     }
                                                 />
                                             ) : (
