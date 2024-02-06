@@ -4,19 +4,48 @@ import { useContext, useEffect } from "react";
 import ComponentLoader from "../loader";
 import Notification from "../notification";
 import { GlobalContext } from "@/context";
+import { addToCart } from "@/services/cart";
+import { toast } from "react-toastify";
 
 
 
 export default function ProductDetails({ item }) {
 
-    const { router } = useContext(GlobalContext);
+    const {
+        setComponentLoader,
+        componentLoader,
+        user, router,
+        setShowCartModal,
+    } = useContext(GlobalContext);
+
+    async function handleAddToCart(getItem) {
+        setComponentLoader({ loading: true, id: "" });
+
+        const res = await addToCart({ productID: getItem._id, userID: user._id });
+
+        if (res.success) {
+            toast.success(res.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+            setComponentLoader({ loading: false, id: "" });
+            setShowCartModal(true);
+        } else {
+            toast.error(res.message, {
+                position: toast.POSITION.TOP_RIGHT,
+            });
+            setComponentLoader({ loading: false, id: "" });
+            setShowCartModal(true);
+        }
+    }
+
 
     useEffect(() => {
         router.refresh();
     }, []);
 
 
-    console.log('*********************', item);
+
+    // console.log('*********************', item);
     return (
         <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 text-black">
             <div className="container mx-auto px-4">
@@ -82,10 +111,10 @@ export default function ProductDetails({ item }) {
                             </div>
                             <button
                                 type="button"
-                                // onClick={() => handleAddToCart(item)}
+                                onClick={() => handleAddToCart(item)}
                                 className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium tracking-wide uppercase text-white"
                             >
-                                {/* {componentLoader && componentLoader.loading ? (
+                                {componentLoader && componentLoader.loading ? (
                                     <ComponentLoader
                                         text={"Adding to Cart"}
                                         color={"#ffffff"}
@@ -95,9 +124,9 @@ export default function ProductDetails({ item }) {
                                     />
                                 ) : (
                                     "Add to Cart"
-                                )} */}
+                                )}
 
-                                add to cart
+                                {/* add to cart */}
                             </button>
                         </div>
                         <ul className="mt-8 space-y-2">
