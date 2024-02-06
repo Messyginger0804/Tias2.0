@@ -1,15 +1,22 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import ComponentLoader from "../loader";
+import { useContext } from "react";
+import { GlobalContext } from "@/context"
 
-export default function CommonCart({
+
+export default function CartComp({
     cartItems = [],
     handleDeleteCartItem,
-    componentLoader,
+    // componentLoader,
 }) {
 
-    const router = useRouter()
+    const {
+        componentLoader, router,
+    } = useContext(GlobalContext)
+
+    // const router = useRouter()
 
     return (
         <section className="h-screen bg-gray-100">
@@ -64,7 +71,7 @@ export default function CommonCart({
                                                                     componentLoader.id === cartItem._id ? (
                                                                     <ComponentLoader
                                                                         text={"Removing"}
-                                                                        color={"#0000000"}
+                                                                        color={"#000000"}
                                                                         loading={
                                                                             componentLoader &&
                                                                             componentLoader.loading
@@ -81,7 +88,7 @@ export default function CommonCart({
                                         ))}
                                     </ul>
                                 ) : (
-                                    <h1 className="font-bold text-lg">Your cart is Empty !</h1>
+                                    <h1 className="font-bold text-lg text- center">Your cart is Empty !</h1>
                                 )}
                             </div>
                             <div className="mt-6 border-t border-b py-2">
