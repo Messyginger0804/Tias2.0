@@ -4,12 +4,14 @@ import Notification from "@/components/notification";
 import { GlobalContext } from "@/context";
 import { fetchAllAddresses } from "@/services/address";
 // import { createNewOrder } from "@/services/order";
-// import { callStripeSession } from "@/services/stripe";
-// import { loadStripe } from "@stripe/stripe-js";
-import { useSearchParams } from "next/navigation";
+import { callStripeSession } from "@/services/stripe";
+import { loadStripe } from "@stripe/stripe-js";
 import { useContext, useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
+
+require('dotenv').config()
+
 
 export default function Checkout() {
     const {
@@ -19,18 +21,21 @@ export default function Checkout() {
         setAddresses,
         checkoutFormData,
         setCheckoutFormData,
-        router
+        router,
+        params,
     } = useContext(GlobalContext);
 
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [isOrderProcessing, setIsOrderProcessing] = useState(false);
     const [orderSuccess, setOrderSuccess] = useState(false);
 
-    const params = useSearchParams();
 
-    // const publishableKey =
-    //     "pk_test_51NMv6ZSC6E6fnyMeRIEb9oEXdGRCC9yrBTT4xWHgcjWOuFcqFiAHErvaS50K1hl5t5WJXVGfLLWxvb705IWJhA3300yCcrMnlM";
-    // const stripePromise = loadStripe(publishableKey);
+    const key = process.env.PUBLISH_KEY
+    const publishableKey = 'pk_test_51McYg7AF869aBXLnnPvk3Dmc8th1P8yi5Ij2YntbTkh3YBcqDXak6agfKEuzHVWuScqwANOoF8Y6sQgW94dbXTZ900x74CplhU'
+    // `${key}`;
+
+    console.log('----------->>>>>>>>', key);
+    const stripePromise = loadStripe(`${publishableKey}`);
 
     // console.log(cartItems);
 
@@ -245,11 +250,15 @@ export default function Checkout() {
                                     <p>City : {item.city}</p>
                                     <p>Country : {item.country}</p>
                                     <p>PostalCode : {item.postalCode}</p>
-                                    <button className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
+                                    {/* <button className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
                                         {item._id === selectedAddress
                                             ? "Selected Address"
                                             : "Select Address"}
+                                    </button> */}
+                                    <button className={`mt-5 mr-5 inline-block ${item._id === selectedAddress ? "bg-black text-white" : "bg-black/40 text-gray-100"} px-5 py-3 text-xs font-medium uppercase tracking-wide`} onClick={() => handleSelectedAddress(item)}>
+                                        {item._id === selectedAddress ? "Selected Address" : "Select Address"}
                                     </button>
+
                                 </div>
                             ))
                         ) : (

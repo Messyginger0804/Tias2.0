@@ -281,3 +281,12 @@ export const addNewAddressFormControls = [
         componentType: "input",
     },
 ];
+
+export const initialCheckoutFormData = {
+    shippingAddress: {},
+    paymentMethod: "",
+    totalPrice: 0,
+    isPaid: false,
+    paidAt: new Date(),
+    isProcessing: true,
+};

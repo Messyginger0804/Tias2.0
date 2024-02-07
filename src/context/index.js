@@ -1,19 +1,11 @@
 "use client";
 
+import { initialCheckoutFormData } from "@/utils";
 import Cookies from "js-cookie";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 
 export const GlobalContext = createContext(null);
-
-export const initialCheckoutFormData = {
-    shippingAddress: {},
-    paymentMethod: "",
-    totalPrice: 0,
-    isPaid: false,
-    paidAt: new Date(),
-    isProcessing: true,
-};
 
 const protectedRoutes = ["cart", "checkout", "account", "orders", "admin-view"];
 
@@ -54,6 +46,8 @@ export default function GlobalState({ children }) {
 
     const router = useRouter();
     const pathName = usePathname();
+    const params = useSearchParams();
+
 
     useEffect(() => {
         if (Cookies.get("token") !== undefined) {
@@ -93,6 +87,7 @@ export default function GlobalState({ children }) {
     return (
         <GlobalContext.Provider
             value={{
+                params,
                 pathName,
                 router,
                 showNavModal,
