@@ -1,7 +1,7 @@
 'use client'
 
 import { GlobalContext } from "@/context";
-import { adminNavOptions, isAdminView, navOptions } from "@/utils";
+import { adminNavOptions, navOptions } from "@/utils";
 import { Fragment, useContext, useEffect } from "react";
 import CommonModal from "../CommonModal";
 import Cookies from "js-cookie";

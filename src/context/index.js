@@ -82,7 +82,7 @@ export default function GlobalState({ children }) {
             user?.role !== "admin" &&
             protectedAdminRoutes.indexOf(pathName) > -1
         )
-            router.push("/unauthorized-page");
+            router.push("/unauthorizedPage");
     }, [user, pathName]);
     return (
         <GlobalContext.Provider
