@@ -122,7 +122,7 @@ export default function Account() {
     }, [user]);
 
     return (
-        <section className="text-black">
+        <section className="text-black mt-4">
             <div className="mx-auto bg-gray-100 px-4 sm:px-6 lg:px-8">
                 <div className="bg-white shadow">
                     <div className="p-6 sm:p-12">
