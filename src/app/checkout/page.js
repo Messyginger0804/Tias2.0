@@ -3,7 +3,7 @@
 import Notification from "@/components/notification";
 import { GlobalContext } from "@/context";
 import { fetchAllAddresses } from "@/services/address";
-// import { createNewOrder } from "@/services/order";
+import { createNewOrder } from "@/services/order";
 import { callStripeSession } from "@/services/stripe";
 import { loadStripe } from "@stripe/stripe-js";
 import { useContext, useEffect, useState } from "react";
@@ -30,11 +30,11 @@ export default function Checkout() {
     const [orderSuccess, setOrderSuccess] = useState(false);
 
 
-    const key = process.env.PUBLISH_KEY
+    // const key = process.env.PUBLISH_KEY
     const publishableKey = 'pk_test_51McYg7AF869aBXLnnPvk3Dmc8th1P8yi5Ij2YntbTkh3YBcqDXak6agfKEuzHVWuScqwANOoF8Y6sQgW94dbXTZ900x74CplhU'
     // `${key}`;
 
-    console.log('----------->>>>>>>>', key);
+    // console.log('----------->>>>>>>>', key);
     const stripePromise = loadStripe(`${publishableKey}`);
 
     // console.log(cartItems);
@@ -122,7 +122,7 @@ export default function Checkout() {
                 ...checkoutFormData.shippingAddress,
                 fullName: getAddress.fullName,
                 city: getAddress.city,
-                country: getAddress.country,
+                state: getAddress.state,
                 postalCode: getAddress.postalCode,
                 address: getAddress.address,
             },
@@ -156,7 +156,7 @@ export default function Checkout() {
         console.log(error);
     }
 
-    console.log(checkoutFormData);
+    // console.log(checkoutFormData);
 
     useEffect(() => {
         if (orderSuccess) {
@@ -248,7 +248,7 @@ export default function Checkout() {
                                     <p>Name : {item.fullName}</p>
                                     <p>Address : {item.address}</p>
                                     <p>City : {item.city}</p>
-                                    <p>Country : {item.country}</p>
+                                    <p>state : {item.state}</p>
                                     <p>PostalCode : {item.postalCode}</p>
                                     {/* <button className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
                                         {item._id === selectedAddress
