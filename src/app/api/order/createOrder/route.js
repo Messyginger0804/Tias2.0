@@ -13,6 +13,7 @@ export async function POST(req) {
 
         if (isAuthUser) {
             const data = await req.json();
+            // console.log(data, '<<<<<<========== this is in the api/order/createOrder/route.js');
             const { user } = data;
 
             const newOrder = await Order.create(data);

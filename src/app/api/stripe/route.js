@@ -34,12 +34,12 @@ export async function POST(req) {
                 message: "You are not authenticated",
             });
         }
-    } catch (e) {
-        console.error(e);
+    } catch (error) {
+        console.error(error);
         return NextResponse.json({
             status: 500,
             success: false,
-            message: "Something went wrong ! Please try again",
+            message: "Something went wrong (src/app/stripe/route.js) ! Please try again",
         });
     }
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connectToDB from "@/mongodb";
-import Product from "@/models/products";
+import Product from "@/models/product";
 
 export const dynamic = "force-dynamic";
 

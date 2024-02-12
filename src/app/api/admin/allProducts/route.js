@@ -1,4 +1,4 @@
-import Product from "@/models/products";
+import Product from "@/models/product";
 import connectToDB from "@/mongodb";
 import { NextResponse } from "next/server";
 

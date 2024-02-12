@@ -10,8 +10,9 @@ export const createNewOrder = async (formData) => {
             },
             body: JSON.stringify(formData),
         });
-
+        console.log('look right here you fucking dumbass this is the data. Please figure this out i am tired of dealing with this error', res);
         const data = await res.json();
+        console.log('look right here you fucking dumbass this is the data. Please figure this out i am tired of dealing with this error', data);
 
         return data;
     } catch (error) {
