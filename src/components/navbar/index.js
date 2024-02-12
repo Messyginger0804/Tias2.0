@@ -6,6 +6,8 @@ import { Fragment, useContext, useEffect } from "react";
 import CommonModal from "../CommonModal";
 import Cookies from "js-cookie";
 import CartModal from "../CartModal";
+import Image from "next/image";
+import logo from '../../../public/tiasLogo.png';
 
 
 function NavItems({ isModalView = false, isAdminView, router }) {
@@ -80,14 +82,14 @@ export default function Navbar() {
     return (
         <>
             <nav className="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200">
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                     <div
                         onClick={() => router.push("/")}
                         className="flex items-center cursor-pointer"
                     >
-                        <span className="slef-center text-2xl font-semibold whitespace-nowrap">
-                            Ecommercery
-                        </span>
+                        <div>
+                            <Image src={logo} />
+                        </div>
                     </div>
                     <div className="flex md:order-2 gap-2">
                         {!isAdminView && isAuthUser ? (
