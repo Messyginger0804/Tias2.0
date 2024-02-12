@@ -39,7 +39,7 @@ export async function GET(req) {
         console.error(error);
         return NextResponse.json({
             success: false,
-            message: "Something went wrong ! Please try again later",
+            message: "Something went wrong!(src/app/api/order/getAllOrders/route.js) Please try again later",
         });
     }
 }
