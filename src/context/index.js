@@ -7,12 +7,12 @@ import { createContext, useEffect, useState } from "react";
 
 export const GlobalContext = createContext(null);
 
-const protectedRoutes = ["cart", "checkout", "account", "orders", "admin-view"];
+const protectedRoutes = ["cart", "checkout", "account", "orders", "adminView"];
 
 const protectedAdminRoutes = [
-    "/admin-view",
-    "/admin-view/add-product",
-    "/admin-view/all-products",
+    "/adminView",
+    "/adminView/addProduct",
+    "/adminView/allProducts",
 ];
 
 export default function GlobalState({ children }) {
