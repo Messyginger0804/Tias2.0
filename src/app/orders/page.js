@@ -56,7 +56,7 @@ export default function Orders() {
     }
 
     return (
-        <section className="text-black">
+        <section>
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mt-8 mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
                     <div>
@@ -70,7 +70,7 @@ export default function Orders() {
                                                 className="bg-gray-200 shadow p-5 flex flex-col space-y-3 py-6 text-left"
                                             >
                                                 <div className="flex">
-                                                    <h1 className="font-bold text-gray-500 text-lg mb-3 flex-1">
+                                                    <h1 className="font-bold text-lg mb-3 flex-1">
                                                         #order: {item._id}
                                                     </h1>
                                                     <div className="flex items-center">

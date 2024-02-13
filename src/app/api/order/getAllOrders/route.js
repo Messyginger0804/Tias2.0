@@ -14,11 +14,17 @@ export async function GET(req) {
             const { searchParams } = new URL(req.url);
             const id = searchParams.get("id");
 
+            console.log("User ID:", id); // Log the user ID
+
             const extractAllOrders = await Order.find({ user: id }).populate(
                 "orderItems.product"
             );
 
+            console.log("Extracted Orders:", extractAllOrders); // Log the query results
+
+
             if (extractAllOrders) {
+                // console.log(extractAllOrders);
                 return NextResponse.json({
                     success: true,
                     data: extractAllOrders,
@@ -35,11 +41,10 @@ export async function GET(req) {
                 message: "You are not authticated",
             });
         }
-    } catch (error) {
-        console.error(error);
+    } catch (e) {
         return NextResponse.json({
             success: false,
-            message: "Something went wrong!(src/app/api/order/getAllOrders/route.js) Please try again later",
+            message: "Something went wrong!(api/orders/getAllOrders/route.js) Please try again later",
         });
     }
 }

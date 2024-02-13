@@ -80,15 +80,15 @@ export default function Navbar() {
     const isAdminView = pathName.includes("adminView");
 
     return (
-        <>
-            <nav className="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200">
+        <div className="h-14">
+            <nav className="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 h-fit">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                     <div
                         onClick={() => router.push("/")}
                         className="flex items-center cursor-pointer"
                     >
-                        <div>
-                            <Image src={logo} />
+                        <div className="h-fit">
+                            <Image className="h-30" src={logo} />
                         </div>
                     </div>
                     <div className="flex md:order-2 gap-2">
@@ -178,20 +178,20 @@ export default function Navbar() {
                     </div>
                     <NavItems router={router} isAdminView={isAdminView} />
                 </div>
+                <CommonModal
+                    showModalTitle={false}
+                    mainContent={
+                        <NavItems
+                            router={router}
+                            isModalView={true}
+                            isAdminView={isAdminView}
+                        />
+                    }
+                    show={showNavModal}
+                    setShow={setShowNavModal}
+                />
+                {showCartModal && <CartModal />}
             </nav >
-            <CommonModal
-                showModalTitle={false}
-                mainContent={
-                    <NavItems
-                        router={router}
-                        isModalView={true}
-                        isAdminView={isAdminView}
-                    />
-                }
-                show={showNavModal}
-                setShow={setShowNavModal}
-            />
-            {showCartModal && <CartModal />}
-        </>
+        </div>
     );
 }

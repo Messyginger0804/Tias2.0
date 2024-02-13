@@ -41,7 +41,7 @@ export async function POST(req) {
         console.error(error);
         return NextResponse.json({
             success: false,
-            message: "Something went wrong in (src/app/api/order/createOrder/route.js) ! Please try again later",
+            message: "Something went wrong in (api/orders/createOrder/route.js) ! Please try again later",
         });
     }
 }

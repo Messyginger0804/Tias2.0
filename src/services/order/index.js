@@ -10,9 +10,8 @@ export const createNewOrder = async (formData) => {
             },
             body: JSON.stringify(formData),
         });
-        console.log('look right here you fucking dumbass this is the data. Please figure this out i am tired of dealing with this error', res);
+
         const data = await res.json();
-        console.log('look right here you fucking dumbass this is the data. Please figure this out i am tired of dealing with this error', data);
 
         return data;
     } catch (error) {
@@ -22,12 +21,15 @@ export const createNewOrder = async (formData) => {
 
 export const getAllOrdersForUser = async (id) => {
     try {
-        const res = await fetch(`/api/order/getAllOrders?id=${id}`, {
+        const res = await fetch(`/order/getAllOrders?id=${id}`, {
+            // const res = await fetch(`http://localhost:3000/api/order/getAllOrders?id=${id}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${Cookies.get("token")}`,
             },
         });
+
+        console.log(`this is the console.log from the services/order/index.js`, res)
 
         const data = await res.json();
 
