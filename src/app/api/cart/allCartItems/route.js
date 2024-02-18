@@ -11,14 +11,14 @@ export async function GET(req) {
         await connectToDB();
         const isAuthUser = await AuthUser(req);
 
-        console.log(req.url, 'this is the req.url from the api/cart/allCartItems');
+        // console.log(req.url, 'this is the req.url from the api/cart/allCartItems');
 
         if (isAuthUser) {
             const { searchParams } = new URL(req.url);
-            console.log({ searchParams }, 'is the searchParams in api/cart/allCartItems');
+            // console.log({ searchParams }, 'is the searchParams in api/cart/allCartItems');
             const id = searchParams.get('id');
 
-            console.log(id, 'this is the id in api/cart/allCartItems');
+            // console.log(id, 'this is the id in api/cart/allCartItems');
 
             if (!id) return NextResponse.json({
                 success: false,

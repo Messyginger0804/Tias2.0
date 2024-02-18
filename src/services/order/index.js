@@ -21,7 +21,7 @@ export const createNewOrder = async (formData) => {
 
 export const getAllOrdersForUser = async (id) => {
     try {
-        const res = await fetch(`/order/getAllOrders?id=${id}`, {
+        const res = await fetch(`api/order/getAllOrders?id=${id}`, {
             // const res = await fetch(`http://localhost:3000/api/order/getAllOrders?id=${id}`, {
             method: "GET",
             headers: {
